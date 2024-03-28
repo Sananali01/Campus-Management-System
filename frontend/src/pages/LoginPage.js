@@ -261,7 +261,7 @@ const LoginPage = ({ role }) => {
                                     label="Remember me"
                                 />
                                 <StyledLink href="#">
-                                    Forgot password?
+                                    Forgot Password?
                                 </StyledLink>
                             </Grid>
                             <BlueButton
