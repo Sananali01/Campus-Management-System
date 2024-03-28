@@ -1,9 +1,9 @@
 <h1 align="center">
-    SCHOOL MANAGEMENT SYSTEM
+    CAMPUS MANAGEMENT SYSTEM
 </h1>
 
 <h3 align="center">
-Streamline school management, class organization, and add students and faculty.<br>
+Streamline Campus management, class organization, and add students and faculty.<br>
 Seamlessly track attendance, assess performance, and provide feedback. <br>
 Access records, view marks, and communicate effortlessly.
 </h3>
