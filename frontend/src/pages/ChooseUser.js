@@ -68,7 +68,7 @@ const ChooseUser = ({ visitor }) => {
 
     return (
             <div className="container-fluid  choose-user-container">
-            <div className="row h-100 justify-content-center">
+            <div className="row ">
                 <div className="col-sm-6 col-md-4 mt-5">
                     <div className="card admin" onClick={() => navigateHandler("Admin")}>
                         <div className="card-body">
