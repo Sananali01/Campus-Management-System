@@ -19,7 +19,7 @@ Data Visualization: Students can visualize their performance data through intera
 
 Communication: Users can communicate effortlessly through the system. Teachers can send messages to students and vice versa, promoting effective communication and collaboration.
 
-Technologies Used
+Technologies Used in it.
 Frontend: React.js, Material UI, Redux
 Backend: Node.js, Express.js
 Database: MongoDB
