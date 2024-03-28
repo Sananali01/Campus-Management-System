@@ -1,0 +1,64 @@
+.paper {
+    padding: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
+.btn-blue { 
+    background-color: #2f3095;
+    border-radius: 12px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-align: center;
+    transition: 200ms;
+    box-sizing: border-box;
+    border: 0;
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .btn-blue:hover{
+    font-weight: 400;
+    border:2px solid #2f3095;
+  }
+
+
+.paper h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.paper p {
+    font-size: 16px;
+}
+
+.loader {
+    color: #fff;
+    font-size: 20px;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+

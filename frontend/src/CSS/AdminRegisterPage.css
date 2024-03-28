@@ -1,0 +1,69 @@
+/* adminRegisterPage.css */
+.admin-register-container{
+    height: 100vh;
+    }
+      
+      .admin-register-paper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 8px 16px;
+      }
+      
+      .admin-register-title {
+        margin-bottom: 16px;
+        color: #2f3095;
+      }
+      
+      .admin-register-description {
+        width: 80%;
+        margin-bottom: 16px;
+      }
+      
+      .admin-register-form {
+        margin-top: 16px;
+      }
+      
+      .admin-register-link {
+        margin-top: 9px;
+        text-decoration: none;
+        color: #2f3095;
+      }
+    
+      .btn-purple {
+        background-color: #2f3095;
+        color: #fff;
+      }
+      .btn-purple:hover{
+        font-weight: 400;
+        border:2px solid #2f3095;
+      }
+    
+      .form-check-input
+      {
+        border: 2px solid #000000;
+        border-radius: 5px;
+      }
+      
+    
+    
+    .form-control {
+        width: 390px;
+        border: 2px solid #2f3095;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      
+      .form-control:focus {
+        outline: none;
+        border-color: #2c2143;
+      }
+      
+      
+      @media screen and (max-width: 475px) {
+    .form-control{
+        width: auto;
+    }
+      }

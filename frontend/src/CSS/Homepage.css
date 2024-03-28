@@ -1,0 +1,21 @@
+/* Add your custom styles here */
+
+.btn-purple {
+    background-color: #2f3095;
+    color: #fff;
+  }
+  .btn-purple:hover{
+    font-weight: 400;
+      border:2px solid #2f3095;
+  }
+  
+  .text-purple {
+    color: #2f3095;
+  }
+  
+  
+  @media screen and (min-width: 300px) and (max-width: 365px) {
+    .homepage-image{
+      margin-top: 35px;
+    }
+      }
