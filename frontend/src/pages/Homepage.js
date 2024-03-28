@@ -14,9 +14,10 @@ const Homepage = () => {
                     <div className="p-4">
                         <h1 className="mb-4">Welcome to Campus Management System</h1>
                         <p>
-                            Streamline campus management, class organization, and add students and faculty.
-                            Seamlessly track attendance, assess performance, and provide feedback and
-                            Access records, view marks, and communicate effortlessly.
+                        Simplify campus management for smoother operations. Improve class organization to enhance teaching and 
+                        learning experiences. Ensure seamless integration of students and faculty members into the system. 
+                        Effortlessly monitor attendance to keep track of who's present. Access records with ease to stay updated on 
+                        academic information.
                         </p>
                         <div className="mb-3">
                             <Link to="/choose" className="btn btn-purple btn-block">
