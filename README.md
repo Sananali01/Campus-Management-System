@@ -10,13 +10,9 @@ Access records, view marks, and communicate effortlessly.
 
 <br>
 
-[Youtube Video](https://youtu.be/ol650KwQkgY?si=rKcboqSv3n-e4UbC)
-<br><br>
-[LinkedIn](https://www.linkedin.com/in/yogndr/)
-
 # About
 
-The School Management System is a web-based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It aims to streamline school management, class organization, and facilitate communication between students, teachers, and administrators.
+The Campus Management System is a web-based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It aims to streamline school management, class organization, and facilitate communication between students, teachers, and administrators.
 
 ## Features
 
@@ -43,7 +39,7 @@ The School Management System is a web-based application built using the MERN (Mo
 # Installation
 
 ```sh
-git clone https://github.com/Yogndrr/MERN-School-Management-System.git
+git clone https://github.com/Sananali01/Campus-System.git
 ```
 Open 2 terminals in separate windows/tabs.
 
@@ -57,7 +53,7 @@ npm start
 Create a file called .env in the backend folder.
 Inside it write this :
 
-MONGO_URL = mongodb://127.0.0.1/school
+MONGO_URL = mongodb://127.0.0.1/Campus-Managment-System
 
 Instead of this link write your database link.
 
