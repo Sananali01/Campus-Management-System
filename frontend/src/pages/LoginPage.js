@@ -12,7 +12,8 @@ import Popup from '../components/Popup';
 
 const defaultTheme = createTheme();
 //code 
-const LoginPage = ({ role }) => { const dispatch = useDispatch()
+    const LoginPage = ({ role }) => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
