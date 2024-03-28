@@ -147,94 +147,100 @@ const LoginPage = ({ role }) => {
                                     <input
                                         margin="normal"
                                         required
-                                        fullWidth
                                         id="rollNumber"
                                         placeholder="Enter Your Roll Number"
                                         name="rollNumber"
                                         autoComplete="off"
                                         type="number"
                                         autoFocus
-                                        error={rollNumberError}
-                                        helperText={rollNumberError && 'Roll Number is required'}
+                                        error={rollNumberError ? 'true' : undefined}
+                                        helpertext={rollNumberError ? 'Roll Number is required' : undefined}
                                         onChange={handleInputChange}
                                         style={{
+                                            marginTop: '15px',
                                             width: '100%',
-                                            border: '3px solid #0a1e82',
+                                            border: `3px solid ${rollNumberError ? 'red' : '#0a1e82'}`, // Set initial border color
                                             borderRadius: '5px',
                                             padding: '10px',
                                             fontSize: '16px',
-                                            transition: 'border-color 0.3s ease'
+                                            transition: 'border-color 0.3s ease',
                                         }}
+                                        onFocus={(e) => e.target.style.borderColor = 'black'} // Change border color to black on focus
+                                        onBlur={(e) => e.target.style.borderColor = rollNumberError ? 'red' : '#0a1e82'} // Restore default or error border color on blur
                                     />
+
                                     <input
                                         margin="normal"
                                         required
-                                        fullWidth
                                         id="studentName"
                                         placeholder="Enter Your Name"
                                         name="studentName"
                                         autoComplete="name"
                                         autoFocus
-                                        error={studentNameError}
-                                        helperText={studentNameError && 'Name is required'}
+                                        error={studentNameError ? 'true' : undefined}
+                                        helpertext={studentNameError ? 'Name is required' : undefined}
                                         onChange={handleInputChange}
                                         style={{
-                                            marginTop:'15px',
+                                            marginTop: '15px',
                                             width: '100%',
-                                            border: '3px solid #0a1e82',
+                                            border: `3px solid ${studentNameError ? 'red' : '#0a1e82'}`, // Set initial border color
                                             borderRadius: '5px',
                                             padding: '10px',
                                             fontSize: '16px',
-                                            transition: 'border-color 0.3s ease'
+                                            transition: 'border-color 0.3s ease',
                                         }}
+                                        onFocus={(e) => e.target.style.borderColor = 'black'} // Change border color to black on focus
+                                        onBlur={(e) => e.target.style.borderColor = studentNameError ? 'red' : '#0a1e82'} // Restore default or error border color on blur
                                     />
                                 </>
                             ) : (
                                 <input
                                     margin="normal"
                                     required
-                                    fullWidth
                                     id="email"
                                     placeholder="Enter Your Email"
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
-                                    error={emailError}
-                                    helperText={emailError && 'Email is required'}
+                                    error={emailError ? 'true' : undefined}
+                                    helpertext={emailError ? 'Email is required' : undefined}
                                     onChange={handleInputChange}
                                     style={{
+                                        marginTop: '15px',
                                         width: '100%',
-                                        border: '3px solid #0a1e82',
+                                        border: `3px solid ${emailError ? 'red' : '#0a1e82'}`, // Set initial border color
                                         borderRadius: '5px',
                                         padding: '10px',
                                         fontSize: '16px',
-                                        transition: 'border-color 0.3s ease'
+                                        transition: 'border-color 0.3s ease',
                                     }}
+                                    onFocus={(e) => e.target.style.borderColor = 'black'} // Change border color to black on focus
+                                    onBlur={(e) => e.target.style.borderColor = emailError ? 'red' : '#0a1e82'} // Restore default or error border color on blur
                                 />
-
                             )}
                             <input
                                 margin="normal"
                                 required
-                                fullWidth
                                 name="password"
                                 placeholder="Enter Password"
                                 type={toggle ? 'text' : 'password'}
                                 id="password"
                                 autoComplete="current-password"
-                                error={passwordError}
-                                helperText={passwordError && 'Password is required'}
+                                error={passwordError ? 'true' : undefined}
+                                helpertext={passwordError ? 'Password is required' : undefined}
                                 onChange={handleInputChange}
                                 style={{
-                                    marginTop:'15px',
+                                    marginTop: '15px',
                                     width: '100%',
-                                    border: '3px solid #0a1e82',
+                                    border: `3px solid ${passwordError ? 'red' : '#0a1e82'}`, // Set initial border color
                                     borderRadius: '5px',
                                     padding: '10px',
                                     fontSize: '16px',
-                                    transition: 'border-color 0.3s ease'
+                                    transition: 'border-color 0.3s ease',
                                 }}
-                                InputProps={{
+                                onFocus={(e) => e.target.style.borderColor = 'black'} // Change border color to black on focus
+                                onBlur={(e) => e.target.style.borderColor = passwordError ? 'red' : '#0a1e82'} // Restore default or error border color on blur
+                                inputprops={{
                                     endAdornment: (
                                         <InputAdornment position="end">
                                             <IconButton onClick={() => setToggle(!toggle)}>
@@ -248,6 +254,7 @@ const LoginPage = ({ role }) => {
                                     ),
                                 }}
                             />
+
                             <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
