@@ -1,10 +1,10 @@
 CAMPUS MANAGEMENT SYSTEM
 Streamline Campus management, class organization, and add students and faculty.
 Seamlessly track attendance, assess performance, and provide feedback.
-Access records, view marks, and communicate effortlessly.
+Access records, view marks, and communicate effortlessly. 
 
 About
-The Campus Management System is a web-based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It aims to streamline school management, class organization, and facilitate communication between students, teachers, and administrators.
+The Campus Management System is a Web Based application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It aims to streamline school management, class organization, and facilitate communication between students, teachers, and administrators.
 
 Features
 User Roles: The system supports three user roles: Admin, Teacher, and Student. Each role has specific functionalities and access levels.
