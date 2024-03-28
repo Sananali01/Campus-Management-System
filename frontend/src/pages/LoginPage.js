@@ -11,10 +11,8 @@ import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
 
 const defaultTheme = createTheme();
-
-const LoginPage = ({ role }) => {
-
-    const dispatch = useDispatch()
+//code 
+const LoginPage = ({ role }) => { const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
