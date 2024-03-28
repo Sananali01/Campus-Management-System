@@ -67,33 +67,33 @@ const ChooseUser = ({ visitor }) => {
     }, []);
 
     return (
-        <div className="container-fluid" style={{ background: '#2f3095', height: '100vh' }}>
-            <div className="row h-100 justify-content-center ">
+            <div className="container-fluid  choose-user-container">
+            <div className="row h-100 justify-content-center">
                 <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="paper admin" >
-                        <h2><FontAwesomeIcon icon={faUser} /> Admin</h2>
-                        <p>Login as an administrator to access the dashboard to manage app data.</p>
-                        <button className="btn-blue" onClick={() => navigateHandler("Admin")}>
-                           Admin Portal
-                        </button>
+                    <div className="card admin" onClick={() => navigateHandler("Admin")}>
+                        <div className="card-body">
+                            <FontAwesomeIcon icon={faUser} className="user-icon" fontSize='30px' />
+                            <h2>Admin</h2>
+                            <p>Login as an administrator to access the dashboard to manage app data.</p>
+                        </div>
                     </div>
                 </div>
                 <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="paper student" >
-                        <h2><FontAwesomeIcon icon={faUserGraduate} /> Student</h2>
-                        <p>Login as a student to explore course materials and assignments.</p>
-                        <button className="btn-blue" onClick={() => navigateHandler("Student")}>
-                           Student Portal
-                        </button>
+                    <div className="card student" onClick={() => navigateHandler("Student")}>
+                        <div className="card-body">
+                            <FontAwesomeIcon icon={faUserGraduate} className="user-icon" fontSize='30px' />
+                            <h2>Student</h2>
+                            <p>Login as a student to explore course materials and assignments.</p>
+                        </div>
                     </div>
                 </div>
                 <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="paper teacher" >
-                        <h2><FontAwesomeIcon icon={faChalkboardTeacher} /> Teacher</h2>
-                        <p>Login as a teacher to create courses, assignments, and track student progress.</p>
-                        <button className="btn-blue" onClick={() => navigateHandler("Teacher")}>
-                             Teacher Portal
-                        </button>
+                    <div className="card teacher" onClick={() => navigateHandler("Teacher")}>
+                        <div className="card-body">
+                            <FontAwesomeIcon icon={faChalkboardTeacher} className="user-icon" fontSize='30px'/>
+                            <h2>Teacher</h2>
+                            <p>Login as a teacher to create courses, assignments, and track student progress.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,6 +104,7 @@ const ChooseUser = ({ visitor }) => {
             )}
             {showPopup && <Popup message={message} setShowPopup={setShowPopup} />}
         </div>
+        
     );
 };
 
