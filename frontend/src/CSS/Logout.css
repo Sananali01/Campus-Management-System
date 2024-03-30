@@ -25,3 +25,11 @@ border: 2px solid #2f3095;
     background-color: #2f3095;
     color: #fff;
 }
+.btn-blue:hover{
+background: none;
+border: 2px solid #2f3095;
+}
+.btn-blue{
+    background-color: #2f3095;
+    color: #fff;
+}
