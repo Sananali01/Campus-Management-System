@@ -92,7 +92,7 @@ const ChooseUser = ({ visitor }) => {
                         <div className="card-body">
                             <FontAwesomeIcon icon={faChalkboardTeacher} className="user-icon" fontSize='30px'/>
                             <h2>Teacher</h2>
-                            <p>Login as a teacher to create courses, assignments, and track student progress.</p>
+                            <p>Login as a teacher to create courses, assignments, and track student's progress.</p>
                         </div>
                     </div>
                 </div>
