@@ -69,7 +69,7 @@ const AccountMenu = () => {
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    <Typography variant="body1">Settings</Typography>
+                    <Typography variant="body1">Setting</Typography>
                 </MenuItem>
 
                 <MenuItem component={Link} to="/logout" sx={styles.menuItem}>
