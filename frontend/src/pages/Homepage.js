@@ -16,6 +16,7 @@ const Homepage = () => {
                         <p style={{ textAlign: "justify" }}>
                             Simplify Campus management for smoother operations. Improve class organization to enhance teaching and learning experiences. Ensure seamless integration of students and faculty members into the system. Effortlessly monitor attendance to keep track of who's present. Access records with ease to stay updated on academic information.
                         </p>
+                        <p>bht maza aye ga </p>
                         <div className="mb-3">
                             <Link to="/choose" className="btn btn-purple btn-block">
                                 Login
