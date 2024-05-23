@@ -14,7 +14,7 @@ const Homepage = () => {
                     <div className="p-4">
                         <h1 className="mb-4">Welcome to Campus Management System</h1>
                         <p style={{ textAlign: "justify" }}>
-                            Simplify Campus management for smoother operations only Available here. Improve class organization to enhance teaching and learning experiences. Ensure seamless integration of students and faculty members into the system. Effortlessly monitor attendance to keep track of who's present. Access records with ease to stay updated on academic information.
+                            Simplify Campus management for smoother operations. Improve class organization to enhance teaching and learning experiences. Ensure seamless integration of students and faculty members into the system. Effortlessly monitor attendance to keep track of who's present. Access records with ease to stay updated on academic information.
                         </p>
                         
                         <div className="mb-3">
