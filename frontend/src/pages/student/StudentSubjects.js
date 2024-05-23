@@ -47,7 +47,7 @@ const StudentSubjects = () => {
         return (
             <>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Subject Marks
+                    Subject Info
                 </Typography>
                 <Table>
                     <TableHead>
