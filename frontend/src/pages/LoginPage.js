@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Box, Typography, Paper, Checkbox, FormControlLabel, CssBaseline, IconButton, InputAdornment, CircularProgress, Backdrop } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+// ===logo
 import bgpic from "../assets/designlogin.jpg"
 import { BlueButton } from '../components/buttonStyles';
 import styled from 'styled-components';
@@ -12,7 +13,7 @@ import Popup from '../components/Popup';
 
 const defaultTheme = createTheme();
 //code 
-    const LoginPage = ({ role }) => {
+const LoginPage = ({ role }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -285,6 +286,7 @@ const defaultTheme = createTheme();
                                     </Grid>
                                 </Grid>
                             }
+
                         </Box>
                     </Box>
                 </Grid>

@@ -4,7 +4,7 @@ import SeeNotice from '../../components/SeeNotice';
 import Students from "../../assets/img1.png";
 import Classes from "../../assets/img2.png";
 import Teachers from "../../assets/img3.png";
-import Fees from "../../assets/img4.png";
+// import Fees from "../../assets/img4.png";
 import styled from 'styled-components';
 import CountUp from 'react-countup';
 import { BlackButton, BlueButton } from '../../components/buttonStyles';
@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { getAllSclasses } from '../../redux/sclassRelated/sclassHandle';
 import { getAllStudents } from '../../redux/studentRelated/studentHandle';
 import { getAllTeachers } from '../../redux/teacherRelated/teacherHandle';
-import { IconButton} from '@mui/material';
+import { IconButton } from '@mui/material';
 
 const AdminHomePage = () => {
     const dispatch = useDispatch();
@@ -63,21 +63,21 @@ const AdminHomePage = () => {
     return (
         <StyledContainer maxWidth="lg">
             <Grid container spacing={3}>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <StyledPaper>
                         <img src={Students} alt="Students" />
                         <Title>Total Students</Title>
                         <Data start={0} end={numberOfStudents} duration={2.5} />
                     </StyledPaper>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <StyledPaper>
                         <img src={Classes} alt="Classes" />
                         <Title>Total Classes</Title>
                         <Data start={0} end={numberOfClasses} duration={5} />
                     </StyledPaper>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <StyledPaper>
                         <img src={Teachers} alt="Teachers" />
                         <Title>Total Teachers</Title>
@@ -85,11 +85,11 @@ const AdminHomePage = () => {
                     </StyledPaper>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <StyledPaper>
+                    {/* <StyledPaper>
                         <img src={Fees} alt="Fees" />
                         <Title>Fees Collection</Title>
                         <Data start={0} end={23000} duration={2.5} prefix="$" />
-                    </StyledPaper>
+                    </StyledPaper> */}
                 </Grid>
                 <Grid item xs={12}>
                     <AnnouncementSection>

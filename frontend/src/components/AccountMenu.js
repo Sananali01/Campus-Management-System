@@ -60,7 +60,7 @@ const AccountMenu = () => {
                     borderTopStyle: 'solid', // Ensure border is solid
                     borderTopColor: '#2f3095',
                 }} />
-                <MenuItem
+                {/* <MenuItem
                     component={Link}
                     to={`/${currentRole}/settings`}
                     onClick={handleClose}
@@ -70,7 +70,7 @@ const AccountMenu = () => {
                         <Settings fontSize="small" />
                     </ListItemIcon>
                     <Typography variant="body1">Setting</Typography>
-                </MenuItem>
+                </MenuItem> */}
 
                 <MenuItem component={Link} to="/logout" sx={styles.menuItem}>
                     <ListItemIcon>

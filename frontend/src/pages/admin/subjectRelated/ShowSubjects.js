@@ -36,10 +36,16 @@ const ShowSubjects = () => {
         setMessage("Sorry the delete function has been disabled for now.")
         setShowPopup(true)
 
-        // dispatch(deleteUser(deleteID, address))
-        //     .then(() => {
-        //         dispatch(getSubjectList(currentUser._id, "AllSubjects"));
-        //     })
+        // To enable deletion, uncomment the lines below and remove the lines above
+        dispatch(deleteUser(deleteID, address))
+            .then(() => {
+                dispatch(getSubjectList(currentUser._id, "AllSubjects"));
+            })
+            .catch((err) => {
+                console.error("Deletion error: ", err);
+                setMessage("An error occurred while deleting the subject.");
+                setShowPopup(true);
+            });
     }
 
     const subjectColumns = [
@@ -107,7 +113,6 @@ const ShowSubjects = () => {
                 </>
             }
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
-
         </>
     );
 };
