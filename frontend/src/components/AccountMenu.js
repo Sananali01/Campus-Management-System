@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip, Typography } from '@mui/material';
-import { Settings, Logout } from '@mui/icons-material';
+import {  Logout } from '@mui/icons-material';
+// import { Settings } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
