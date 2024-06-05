@@ -1,3 +1,5 @@
+//routes.js
+
 const router = require('express').Router();
 
 // const { adminRegister, adminLogIn, deleteAdmin, getAdminDetail, updateAdmin } = require('../controllers/admin-controller.js');
@@ -8,6 +10,7 @@ const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail,
 const { complainCreate, complainList } = require('../controllers/complain-controller.js');
 const { noticeCreate, noticeList, deleteNotices, deleteNotice, updateNotice } = require('../controllers/notice-controller.js');
 const {
+    getStudentAssignments,
     studentRegister,
     studentLogIn,
     getStudents,
@@ -35,6 +38,7 @@ router.get("/Admin/:id", getAdminDetail)
 // router.put("/Admin/:id", updateAdmin)
 
 // Student
+
 
 router.post('/StudentReg', studentRegister);
 router.post('/StudentLogin', studentLogIn)
@@ -105,6 +109,9 @@ router.delete("/Sclass/:id", deleteSclass)
 
 // Subject
 
+
+
+
 router.post('/SubjectCreate', subjectCreate);
 
 router.get('/AllSubjects/:id', allSubjects);
@@ -115,5 +122,19 @@ router.get("/Subject/:id", getSubjectDetail)
 router.delete("/Subject/:id", deleteSubject)
 router.delete("/Subjects/:id", deleteSubjects)
 router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
+
+
+
+
+const express = require('express');
+const { uploadAssignment, getAssignments } = require('../controllers/assignment-controller'); // Import the getAssignments function
+
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+router.post('/upload-assignment', upload.single('assignment'), uploadAssignment);
+router.get('/assignments', getAssignments); 
 
 module.exports = router;
