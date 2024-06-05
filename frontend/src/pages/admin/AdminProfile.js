@@ -1,45 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux'; // Ensure correct import path
-import { Box, Typography, Paper } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { useSelector } from 'react-redux'; 
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '80vh',
-  },
-  paper: {
-    padding: theme.spacing(4),
-    maxWidth: 400,
-    textAlign: 'left',
-    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-  },
-  title: {
-    marginBottom: theme.spacing(2),
-    fontWeight: 'bold',
-    color: theme.palette.primary.main,
-  },
-  info: {
-    marginBottom: theme.spacing(1),
-  },
-}));
-
-const AdminProfile = () => {  // Converted to arrow function for functional component
-  const { currentUser } = useSelector((state) => state.user); // Access data from Redux store
-  const classes = useStyles();
+const AdminProfile = () => {
+  const { currentUser } = useSelector((state) => state.user); 
 
   return (
-    <Box className={classes.container}>
-      <Paper elevation={3} className={classes.paper}>
-        <Typography variant="h5" className={classes.title}>Admin Profile</Typography>
-        <Typography variant="body1" className={classes.info}><strong>Name:</strong> {currentUser.name}</Typography>
-        <Typography variant="body1" className={classes.info}><strong>Email:</strong> {currentUser.email}</Typography>
-        <Typography variant="body1" className={classes.info}><strong>Role:</strong> {currentUser.role}</Typography>
-        <Typography variant="body1" className={classes.info}><strong>School:</strong> {currentUser.schoolName}</Typography>
-      </Paper>
-    </Box>
+    <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+      <div className="card" style={{ maxWidth: '400px', padding: '20px', boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }}>
+        <h5 className="card-title mb-4 font-weight-bold text-primary">Admin Profile</h5>
+        <p className="card-text mb-1"><strong>Name:</strong> {currentUser.name}</p>
+        <p className="card-text mb-1"><strong>Email:</strong> {currentUser.email}</p>
+        <p className="card-text mb-1"><strong>Role:</strong> {currentUser.role}</p>
+        <p className="card-text mb-1"><strong>School:</strong> {currentUser.schoolName}</p>
+      </div>
+    </div>
   );
 };
 
