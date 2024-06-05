@@ -34,7 +34,7 @@ const StudentSideBar = () => {
                 </ListItemButton>
                 <ListItemButton component={Link} to="/Student/assignments">
                 <ListItemIcon>
-                    <AssignmentIcon />
+                    <AssignmentIcon color={location.pathname.startsWith("/Student/assignments") ? 'primary' : 'inherit'}/>
                 </ListItemIcon>
                 <ListItemText primary="Assignments" style={listItemTextStyle} />
             </ListItemButton>
