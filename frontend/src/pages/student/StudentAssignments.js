@@ -1,5 +1,3 @@
-// StudentAssignments.js
-
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 import axios from 'axios';
@@ -10,7 +8,7 @@ const StudentAssignments = () => {
     useEffect(() => {
         const fetchAssignments = async () => {
             try {
-                const response = await axios.get('/assignments'); // Fetch assignments from the backend
+                const response = await axios.get('http://localhost:5000/assignments'); // Ensure correct port
                 setAssignments(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);

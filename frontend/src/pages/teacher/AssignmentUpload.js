@@ -1,35 +1,48 @@
-// AssignmentUpload.js
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, Snackbar, Alert } from '@mui/material';
 import axios from 'axios';
 
 const AssignmentUpload = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [assignmentFile, setAssignmentFile] = useState(null);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
     const handleFileChange = (event) => {
         setAssignmentFile(event.target.files[0]);
     };
 
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
     const handleFileUpload = async () => {
         if (!assignmentFile) return;
+    
         const formData = new FormData();
         formData.append('assignment', assignmentFile);
         formData.append('studentID', params.id);
         formData.append('subjectID', params.subjectID);
-
+    
         try {
-            const response = await axios.post('/api/upload-assignment', formData, {
+            const response = await axios.post('http://localhost:5000/upload-assignment', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             console.log('File uploaded successfully:', response.data);
             setAssignmentFile(null);
+            setSnackbarMessage('Assignment uploaded successfully');
+            setSnackbarSeverity('success');
         } catch (error) {
             console.error('Error uploading file:', error);
+            setSnackbarMessage('Failed to upload assignment');
+            setSnackbarSeverity('error');
+        } finally {
+            setSnackbarOpen(true);
         }
     };
 
@@ -51,6 +64,17 @@ const AssignmentUpload = () => {
             <Button variant="contained" onClick={handleFileUpload}>Upload</Button>
             <br /><br />
             <Button variant="outlined" onClick={() => navigate(-1)}>Back</Button>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={handleSnackbarClose}
+            >
+                <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 }
