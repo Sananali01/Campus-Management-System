@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, Snackbar, Alert } from '@mui/material';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
-const AssignmentUpload = () => {
+const AssignmentUpload = ({ subjectID }) => {
     const navigate = useNavigate();
-    const params = useParams();
     const [assignmentFile, setAssignmentFile] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+
+    // Get current user from Redux store
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleFileChange = (event) => {
         setAssignmentFile(event.target.files[0]);
@@ -20,13 +23,19 @@ const AssignmentUpload = () => {
     };
 
     const handleFileUpload = async () => {
-        if (!assignmentFile) return;
-    
+        if (!assignmentFile || !currentUser) return;
+
         const formData = new FormData();
         formData.append('assignment', assignmentFile);
-        formData.append('studentID', params.id);
-        formData.append('subjectID', params.subjectID);
-    
+        formData.append('studentID', currentUser._id); // Pass current user's ID
+        formData.append('subjectID', subjectID);
+
+        console.log('Uploading file with the following details:', {
+            studentID: currentUser._id,
+            subjectID,
+            fileName: assignmentFile.name
+        });
+
         try {
             const response = await axios.post('http://localhost:5000/upload-assignment', formData, {
                 headers: {
@@ -77,6 +86,6 @@ const AssignmentUpload = () => {
             </Snackbar>
         </Box>
     );
-}
+};
 
 export default AssignmentUpload;

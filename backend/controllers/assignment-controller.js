@@ -26,14 +26,18 @@ const uploadAssignment = async (req, res) => {
     }
 
     const { studentID, subjectID } = req.body;
-    const assignmentFile = req.file;
+    console.log('Received assignment upload request with the following details:', {
+        studentID,
+        subjectID,
+        fileName: req.file.originalname
+    });
 
     try {
         const assignment = new Assignment({
             studentID,
             subjectID,
-            fileName: assignmentFile.originalname,
-            filePath: path.join(__dirname, '../uploads', assignmentFile.originalname),
+            fileName: req.file.originalname,
+            filePath: path.join(__dirname, '../uploads', req.file.originalname),
         });
         await assignment.save();
         res.status(200).json({ message: 'Assignment uploaded successfully', assignment });
@@ -43,9 +47,9 @@ const uploadAssignment = async (req, res) => {
     }
 };
 
-const getAssignments = async (req, res) => {
+const getAssignmentsByStudent = async (req, res) => {
     try {
-        const assignments = await Assignment.find();
+        const assignments = await Assignment.find({ studentID: req.params.studentID }).populate('subjectID', 'subName');
         res.status(200).json(assignments);
     } catch (error) {
         console.error('Error fetching assignments:', error);
@@ -53,4 +57,4 @@ const getAssignments = async (req, res) => {
     }
 };
 
-module.exports = { upload, uploadAssignment, getAssignments };
+module.exports = { upload, uploadAssignment, getAssignmentsByStudent };

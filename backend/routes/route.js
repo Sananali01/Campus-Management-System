@@ -126,15 +126,5 @@ router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
 
 
 
-const express = require('express');
-const { upload, uploadAssignment, getAssignments } = require('../controllers/assignment-controller.js');
-
-
-
-// Assignment routes
-router.post('/upload-assignment', upload.single('assignment'), uploadAssignment);
-router.get('/assignments', getAssignments);
-
-
 
 module.exports = router;
