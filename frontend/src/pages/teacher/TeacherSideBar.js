@@ -14,7 +14,7 @@ const TeacherSideBar = () => {
     const { currentUser } = useSelector((state) => state.user);
     const sclassName = currentUser.teachSclass;
     const teachSubjectID = currentUser.teachSubject?._id;
-    const studentID = useParams().id; // Use params to get studentID if needed
+    const studentID = useParams().studentID;
 
     const location = useLocation();
 

@@ -2,6 +2,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const Assignment = require('../models/assignmentSchema');
+const { v4: uuidv4 } = require('uuid'); // Import UUID
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -13,13 +14,19 @@ const storage = multer.diskStorage({
         cb(null, uploadDir);
     },
     filename: function(req, file, cb) {
-        cb(null, file.originalname);
+        const uniqueSuffix = `${uuidv4()}-${Date.now()}`;
+        const originalName = file.originalname;
+        const extension = path.extname(originalName);
+        cb(null, `${uniqueSuffix}${extension}`);
     }
 });
 
 const upload = multer({ storage: storage });
 
 const uploadAssignment = async (req, res) => {
+    console.log('Request received:', req.body); // Debugging statement
+    console.log('File received:', req.file); // Debugging statement
+
     if (!req.file) {
         console.error('No file uploaded');
         return res.status(400).json({ error: 'No file uploaded' });
@@ -29,7 +36,7 @@ const uploadAssignment = async (req, res) => {
     console.log('Received assignment upload request with the following details:', {
         studentID,
         subjectID,
-        fileName: req.file.originalname
+        fileName: req.file.filename // Use the new unique filename
     });
 
     try {
@@ -37,7 +44,7 @@ const uploadAssignment = async (req, res) => {
             studentID,
             subjectID,
             fileName: req.file.originalname,
-            filePath: path.join(__dirname, '../uploads', req.file.originalname),
+            filePath: req.file.path,
         });
         await assignment.save();
         res.status(200).json({ message: 'Assignment uploaded successfully', assignment });
@@ -48,8 +55,9 @@ const uploadAssignment = async (req, res) => {
 };
 
 const getAssignmentsByStudent = async (req, res) => {
+    const { studentID } = req.params;
     try {
-        const assignments = await Assignment.find({ studentID: req.params.studentID }).populate('studentID', 'subName');
+        const assignments = await Assignment.find({ studentID });
         res.status(200).json(assignments);
     } catch (error) {
         console.error('Error fetching assignments:', error);

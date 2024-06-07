@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const StudentAssignments = () => {
     const [assignments, setAssignments] = useState([]);
+    const currentUser = useSelector((state) => state.user.currentUser);
 
     useEffect(() => {
         const fetchAssignments = async () => {
+            if (!currentUser) return;
+
             try {
-                const response = await axios.get('http://localhost:5000/assignments'); // Ensure correct port
+                const response = await axios.get(`http://localhost:5000/api/assignments/${currentUser._id}`);
                 setAssignments(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);
@@ -16,7 +20,7 @@ const StudentAssignments = () => {
         };
 
         fetchAssignments();
-    }, []);
+    }, [currentUser]);
 
     return (
         <div>
