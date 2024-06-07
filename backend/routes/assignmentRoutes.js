@@ -1,4 +1,4 @@
-//Assignmetn routes
+//Assignment routes
 
 const express = require('express');
 const { upload, uploadAssignment, getAssignmentsByStudent } = require('../controllers/assignment-controller');
