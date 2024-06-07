@@ -10,14 +10,16 @@ const StudentAssignments = () => {
     useEffect(() => {
         const fetchAssignments = async () => {
             if (!currentUser) return;
-
+        
             try {
                 const response = await axios.get(`http://localhost:5000/api/assignments/${currentUser._id}`);
+                console.log('Assignments data:', response.data); // Debugging statement
                 setAssignments(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);
             }
         };
+        
 
         fetchAssignments();
     }, [currentUser]);
