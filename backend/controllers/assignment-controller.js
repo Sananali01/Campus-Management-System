@@ -49,7 +49,7 @@ const uploadAssignment = async (req, res) => {
 
 const getAssignmentsByStudent = async (req, res) => {
     try {
-        const assignments = await Assignment.find({ studentID: req.params.studentID }).populate('subjectID', 'subName');
+        const assignments = await Assignment.find({ studentID: req.params.studentID }).populate('studentID', 'subName');
         res.status(200).json(assignments);
     } catch (error) {
         console.error('Error fetching assignments:', error);
