@@ -58,11 +58,18 @@ const getAssignmentsByStudent = async (req, res) => {
     const { studentID } = req.params;
     try {
         const assignments = await Assignment.find({ studentID });
+        console.log('Assignments fetched:', assignments); // Debugging statement
+        if (!assignments) {
+            console.error('No assignments found');
+            return res.status(404).json({ error: 'No assignments found' });
+        }
         res.status(200).json(assignments);
     } catch (error) {
         console.error('Error fetching assignments:', error);
         res.status(500).json({ error: 'Failed to fetch assignments' });
     }
 };
+
+
 
 module.exports = { upload, uploadAssignment, getAssignmentsByStudent };

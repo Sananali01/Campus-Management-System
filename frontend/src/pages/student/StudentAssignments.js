@@ -20,6 +20,7 @@ const StudentAssignments = () => {
             }
         };
 
+        console.log('Current user ID:', currentUser._id); // Debugging statement
         fetchAssignments();
     }, [currentUser]);
 
@@ -43,6 +44,3 @@ const StudentAssignments = () => {
 };
 
 export default StudentAssignments;
-
-
-
