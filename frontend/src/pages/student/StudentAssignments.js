@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Typography, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import DownloadIcon from '@mui/icons-material/Download';
 
 const StudentAssignments = () => {
     const [assignments, setAssignments] = useState([]);
@@ -20,7 +21,7 @@ const StudentAssignments = () => {
             }
         };
 
-        console.log('Current user ID:', currentUser._id); // Debugging statement
+        console.log('Current user ID:', currentUser?._id); // Debugging statement
         fetchAssignments();
     }, [currentUser]);
 
@@ -31,11 +32,21 @@ const StudentAssignments = () => {
             </Typography>
             <List>
                 {assignments.map((assignment, index) => (
-                    <ListItem key={index} button>
-                        <ListItemText primary={assignment.fileName} />
-                        <p>Subject ID: {assignment.subjectID}</p>
-                        <p>Uploaded By: {assignment.studentID}</p>
-                        <a href={`http://localhost:5000/${assignment.filePath}`} download>Download</a>
+                    <ListItem key={index}>
+                        <ListItemText 
+                            primary={assignment.fileName}
+                            secondary={
+                                <>
+                                    <span>Subject ID: {assignment.subjectID}</span><br/>
+                                    <span>Uploaded By: {assignment.studentID}</span>
+                                </>
+                            }
+                        />
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" href={`http://localhost:5000/${assignment.filePath}`} download>
+                                <DownloadIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
                     </ListItem>
                 ))}
             </List>
