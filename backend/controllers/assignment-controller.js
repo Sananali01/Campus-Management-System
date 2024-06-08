@@ -58,7 +58,7 @@ const getAssignmentsByStudent = async (req, res) => {
     const { studentID } = req.params;
     try {
         const assignments = await Assignment.find({ studentID });
-        console.log('Assignments fetched:', assignments); // Debugging statement
+        console.log('Assignments fetched:', assignments); 
         if (!assignments) {
             console.error('No assignments found');
             return res.status(404).json({ error: 'No assignments found' });
