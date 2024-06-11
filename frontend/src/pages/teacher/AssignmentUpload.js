@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Typography, Snackbar, Alert, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import {  Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
+import { Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -12,7 +12,6 @@ const AssignmentUpload = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
-    const [isUploaded, setIsUploaded] = useState(false); // State to track if assignment is uploaded
 
     const currentUser = useSelector((state) => state.user.currentUser);
 
@@ -64,7 +63,6 @@ const AssignmentUpload = () => {
             console.log('Files uploaded successfully');
             setSnackbarMessage('Assignments uploaded successfully');
             setSnackbarSeverity('success');
-            setIsUploaded(true); // Set isUploaded to true after successful upload
             // Mark uploaded files in the state
             setAssignmentFiles(newFiles.map(({ file }) => ({ file, uploaded: true })));
         } catch (error) {
@@ -141,8 +139,8 @@ const AssignmentUpload = () => {
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={snackbarOpen || isUploaded} // Show popup if snackbarOpen is true or if assignment is uploaded
-                autoHideDuration={6000}
+                open={snackbarOpen}
+                autoHideDuration={2000}
                 onClose={handleSnackbarClose}
             >
                 <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
