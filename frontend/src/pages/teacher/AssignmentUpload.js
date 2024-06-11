@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, Button, Typography, Snackbar, Alert } from '@mui/material';
+import { Box, Button, Typography, Snackbar, Alert, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { CloudUpload, Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const AssignmentUpload = () => {
     const navigate = useNavigate();
     const { subjectID } = useParams(); // Get subjectID from URL parameters
-    const [assignmentFile, setAssignmentFile] = useState(null);
+    const [assignmentFiles, setAssignmentFiles] = useState([]);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
@@ -16,7 +17,7 @@ const AssignmentUpload = () => {
     const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleFileChange = (event) => {
-        setAssignmentFile(event.target.files[0]);
+        setAssignmentFiles([...assignmentFiles, { file: event.target.files[0], uploaded: false }]);
         console.log('Selected file:', event.target.files[0]); // Debugging statement
     };
 
@@ -25,48 +26,70 @@ const AssignmentUpload = () => {
     };
 
     const handleFileUpload = async () => {
-        console.log('File to upload:', assignmentFile); // Debugging statement
+        const newFiles = [...assignmentFiles];
+
         console.log('Current user:', currentUser); // Debugging statement
         console.log('Subject ID:', subjectID); // Debugging statement
-    
-        if (!assignmentFile || !currentUser || !subjectID) {
+
+        if (newFiles.length === 0 || !currentUser || !subjectID) {
             setSnackbarMessage('Please select a file and ensure you are logged in.');
             setSnackbarSeverity('warning');
             setSnackbarOpen(true);
             return;
         }
-    
-        const formData = new FormData();
-        formData.append('assignment', assignmentFile);
-        formData.append('studentID', currentUser._id);
-        formData.append('subjectID', subjectID);
-    
-        console.log('Uploading file with the following details:', {
+
+        const formDataArray = newFiles.map(({ file }) => {
+            const formData = new FormData();
+            formData.append('assignment', file);
+            formData.append('studentID', currentUser._id);
+            formData.append('subjectID', subjectID);
+            return formData;
+        });
+
+        console.log('Uploading files with the following details:', {
             studentID: currentUser._id,
             subjectID,
-            fileName: assignmentFile.name
+            fileNames: newFiles.map(({ file }) => file.name)
         });
-    
+
         try {
-            const response = await axios.post('http://localhost:5000/api/upload-assignment', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            console.log('File uploaded successfully:', response.data);
-            setAssignmentFile(null);
-            setSnackbarMessage('Assignment uploaded successfully');
+            const uploadPromises = formDataArray.map(formData =>
+                axios.post('http://localhost:5000/api/upload-assignment', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+            );
+            await Promise.all(uploadPromises);
+            console.log('Files uploaded successfully');
+            setSnackbarMessage('Assignments uploaded successfully');
             setSnackbarSeverity('success');
             setIsUploaded(true); // Set isUploaded to true after successful upload
+            // Mark uploaded files in the state
+            setAssignmentFiles(newFiles.map(({ file }) => ({ file, uploaded: true })));
         } catch (error) {
-            console.error('Error uploading file:', error);
-            setSnackbarMessage('Failed to upload assignment');
+            console.error('Error uploading files:', error);
+            setSnackbarMessage('Failed to upload assignments');
             setSnackbarSeverity('error');
         } finally {
             setSnackbarOpen(true);
         }
     };
-    
+
+    const handleRemoveFile = (index) => {
+        const newFiles = [...assignmentFiles];
+        newFiles.splice(index, 1);
+        setAssignmentFiles(newFiles);
+    };
+
+    const handleDownloadFile = (file) => {
+        const url = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', file.name);
+        document.body.appendChild(link);
+        link.click();
+    };
 
     return (
         <Box sx={{ textAlign: 'center', marginTop: '2rem' }}>
@@ -81,11 +104,40 @@ const AssignmentUpload = () => {
             <label htmlFor="assignment-upload">
                 <Button variant="contained" component="span">Choose File</Button>
             </label>
-            {assignmentFile && <Typography variant="body1">{assignmentFile.name}</Typography>}
             <br /><br />
             <Button variant="contained" onClick={handleFileUpload}>Upload</Button>
             <br /><br />
             <Button variant="outlined" onClick={() => navigate(-1)}>Back</Button>
+
+            <TableContainer component={Paper} sx={{ marginTop: '2rem' }}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>File</TableCell>
+                            <TableCell>Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {assignmentFiles.map(({ file, uploaded }, index) => (
+                            <TableRow key={index}>
+                                <TableCell>
+                                    {file.type.startsWith('image/') ? (
+                                        <img src={URL.createObjectURL(file)} alt={file.name} style={{ maxWidth: '50px', maxHeight: '50px' }} />
+                                    ) : (
+                                        <InsertDriveFile />
+                                    )}
+                                    {file.name}
+                                    {uploaded && <CheckCircle style={{ marginLeft: '5px', color: 'green' }} />}
+                                </TableCell>
+                                <TableCell>
+                                    <Button onClick={() => handleDownloadFile(file)}><CloudDownload /></Button>
+                                    <Button onClick={() => handleRemoveFile(index)}><Delete /></Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}

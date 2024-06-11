@@ -12,6 +12,7 @@
   "dependencies": {
     "@mui/styles": "^5.15.19",
     "@mui/utils": "^5.15.14",
-    "caniuse-lite": "^1.0.30001600"
+    "caniuse-lite": "^1.0.30001600",
+    "mongoose": "^8.4.1"
   }
 }
