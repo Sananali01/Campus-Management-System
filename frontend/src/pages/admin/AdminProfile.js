@@ -1,19 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux'; 
+import { Container, Card, Typography, Grid } from '@mui/material'; // Import Material-UI components
 
 const AdminProfile = () => {
   const { currentUser } = useSelector((state) => state.user); 
 
   return (
-    <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-      <div className="card" style={{ maxWidth: '400px', padding: '20px', boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }}>
-        <h5 className="card-title mb-4 font-weight-bold text-primary">Admin Profile</h5>
-        <p className="card-text mb-1"><strong>Name:</strong> {currentUser.name}</p>
-        <p className="card-text mb-1"><strong>Email:</strong> {currentUser.email}</p>
-        <p className="card-text mb-1"><strong>Role:</strong> {currentUser.role}</p>
-        <p className="card-text mb-1"><strong>School:</strong> {currentUser.schoolName}</p>
-      </div>
-    </div>
+    <Container maxWidth="lg" style={{  display: 'flex', justifyContent: 'center', marginTop:'50px' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <Card sx={{ p: 4, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }} >
+            <Typography variant="h4" component="h2" gutterBottom color="primary" align="center">Admin Profile</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name:</strong> {currentUser.name}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Email:</strong> {currentUser.email}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Role:</strong> {currentUser.role}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>School:</strong> {currentUser.schoolName}</Typography>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

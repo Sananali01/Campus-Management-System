@@ -1,53 +1,26 @@
-import React from 'react'
-import styled from 'styled-components';
-import { Card, CardContent, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux'; 
+import { Container, Card, Typography, Grid } from '@mui/material'; // Import Material-UI components
 
 const TeacherProfile = () => {
-  const { currentUser, response, error } = useSelector((state) => state.user);
-
-  if (response) { console.log(response) }
-  else if (error) { console.log(error) }
-
-  const teachSclass = currentUser.teachSclass
-  const teachSubject = currentUser.teachSubject
-  const teachSchool = currentUser.school
+  const { currentUser } = useSelector((state) => state.user); 
 
   return (
-    <>
-      <ProfileCard>
-        <ProfileCardContent>
-          <ProfileText><strong>Name:</strong> {currentUser.name}</ProfileText>
-          <ProfileText><strong>Email:</strong> {currentUser.email}</ProfileText>
-          <ProfileText><strong>Class:</strong> {teachSclass.sclassName}</ProfileText>
-          <ProfileText><strong>Subject:</strong> {teachSubject.subName}</ProfileText>
-          <ProfileText><strong>School:</strong> {teachSchool.schoolName}</ProfileText>
+    <Container maxWidth="lg" style={{  display: 'flex', justifyContent: 'center', marginTop:'50px' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <Card sx={{ p: 4, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }} >
+            <Typography variant="h4" component="h2" gutterBottom color="primary" align="center">Teacher Profile</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name:</strong> {currentUser.name}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Email:</strong> {currentUser.email}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Class:</strong> {currentUser.teachSclass.sclassName}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Subject:</strong> {currentUser.teachSubject.subName}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>School:</strong> {currentUser.school.schoolName}</Typography>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
 
-        </ProfileCardContent>
-      </ProfileCard>
-    </>
-  )
-}
-
-export default TeacherProfile
-
-const ProfileCard = styled(Card)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-const ProfileCardContent = styled(CardContent)`
-  text-align: left;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  max-width: 400px; /* Adjust width as needed */
-  font-size: 20px; /* Increase font size */
-  box-shadow: 4px 8px 10px 2px black; /* Add box shadow for 3D effect */
-`;
-
-const ProfileText = styled(Typography)`
-  margin-bottom: 10px; /* Add spacing between info items */
-`;
+export default TeacherProfile;
