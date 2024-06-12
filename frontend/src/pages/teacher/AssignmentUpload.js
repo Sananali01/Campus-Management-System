@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, Snackbar, Alert, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const AssignmentUpload = () => {
     const navigate = useNavigate();
-    const { subjectID } = useParams(); // Get subjectID from URL parameters
+    // const { subjectID } = useParams(); // Get subjectID from URL parameters
     const [assignmentFiles, setAssignmentFiles] = useState([]);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
-    const currentUser = useSelector((state) => state.user.currentUser);
+    // const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleFileChange = (event) => {
         setAssignmentFiles([...assignmentFiles, { file: event.target.files[0], uploaded: false }]);
@@ -23,15 +23,11 @@ const AssignmentUpload = () => {
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
     };
-
     const handleFileUpload = async () => {
         const newFiles = [...assignmentFiles];
 
-        console.log('Current user:', currentUser); // Debugging statement
-        console.log('Subject ID:', subjectID); // Debugging statement
-
-        if (newFiles.length === 0 || !currentUser || !subjectID) {
-            setSnackbarMessage('Please select a file and ensure you are logged in.');
+        if (newFiles.length === 0) {
+            setSnackbarMessage('Please select a file.');
             setSnackbarSeverity('warning');
             setSnackbarOpen(true);
             return;
@@ -40,15 +36,7 @@ const AssignmentUpload = () => {
         const formDataArray = newFiles.map(({ file }) => {
             const formData = new FormData();
             formData.append('assignment', file);
-            formData.append('studentID', currentUser._id);
-            formData.append('subjectID', subjectID);
             return formData;
-        });
-
-        console.log('Uploading files with the following details:', {
-            studentID: currentUser._id,
-            subjectID,
-            fileNames: newFiles.map(({ file }) => file.name)
         });
 
         try {
@@ -63,7 +51,6 @@ const AssignmentUpload = () => {
             console.log('Files uploaded successfully');
             setSnackbarMessage('Assignments uploaded successfully');
             setSnackbarSeverity('success');
-            // Mark uploaded files in the state
             setAssignmentFiles(newFiles.map(({ file }) => ({ file, uploaded: true })));
         } catch (error) {
             console.error('Error uploading files:', error);
@@ -73,6 +60,7 @@ const AssignmentUpload = () => {
             setSnackbarOpen(true);
         }
     };
+
 
     const handleRemoveFile = (index) => {
         const newFiles = [...assignmentFiles];
@@ -111,8 +99,8 @@ const AssignmentUpload = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>File</TableCell>
-                            <TableCell>Actions</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold' }}>File</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold' }}>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

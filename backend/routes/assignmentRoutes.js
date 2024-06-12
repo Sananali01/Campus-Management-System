@@ -5,6 +5,6 @@ const { upload, uploadAssignment, getAssignmentsByStudent } = require('../contro
 const router = express.Router();
 
 router.post('/upload-assignment', upload.single('assignment'), uploadAssignment);
-router.get('/assignments/:studentID', getAssignmentsByStudent);
+router.get('/assignments', getAssignmentsByStudent);
 
 module.exports = router;

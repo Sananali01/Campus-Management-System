@@ -35,7 +35,7 @@ const TeacherDashboard = () => {
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar open={open} position='absolute' sx={{backgroundColor:'#2f3095'}}>
+                <AppBar open={open} position='absolute' sx={{ backgroundColor: '#2f3095' }}>
                     <Toolbar sx={{ pr: '24px' }}>
                         <IconButton
                             edge="start"
@@ -84,7 +84,7 @@ const TeacherDashboard = () => {
 
                         <Route path="/Teacher/class" element={<TeacherClassDetails />} />
                         <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
-                        <Route path="/Teacher/class/student/assignment/:id/:subjectID"  element={<AssignmentUpload />} />
+                        <Route path="/Teacher/class/assignment" element={<AssignmentUpload />} />
 
                         <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
                         <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
