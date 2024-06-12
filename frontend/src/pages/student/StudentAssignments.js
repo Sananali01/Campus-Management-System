@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+
 
 const StudentAssignments = () => {
     const [assignments, setAssignments] = useState([]);
