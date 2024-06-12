@@ -6,14 +6,14 @@ const { v4: uuidv4 } = require('uuid'); // Import UUID
 
 // Multer configuration
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         const uploadDir = path.join(__dirname, '../uploads');
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir, { recursive: true });
         }
         cb(null, uploadDir);
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         const uniqueSuffix = `${uuidv4()}-${Date.now()}`;
         const originalName = file.originalname;
         const extension = path.extname(originalName);
@@ -32,17 +32,8 @@ const uploadAssignment = async (req, res) => {
         return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    const { studentID, subjectID } = req.body;
-    console.log('Received assignment upload request with the following details:', {
-        studentID,
-        subjectID,
-        fileName: req.file.filename // Use the new unique filename
-    });
-
     try {
         const assignment = new Assignment({
-            studentID,
-            subjectID,
             fileName: req.file.originalname,
             filePath: req.file.path,
         });
@@ -54,11 +45,12 @@ const uploadAssignment = async (req, res) => {
     }
 };
 
+
 const getAssignmentsByStudent = async (req, res) => {
     const { studentID } = req.params;
     try {
         const assignments = await Assignment.find({ studentID });
-        console.log('Assignments fetched:', assignments); 
+        console.log('Assignments fetched:', assignments);
         if (!assignments) {
             console.error('No assignments found');
             return res.status(404).json({ error: 'No assignments found' });

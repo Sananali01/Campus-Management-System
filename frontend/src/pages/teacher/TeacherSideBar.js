@@ -43,7 +43,7 @@ const TeacherSideBar = () => {
                     </ListItemIcon>
                     <ListItemText primary="Complain" style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to={`/Teacher/class/student/assignment/${studentID}/${teachSubjectID}`}>
+                <ListItemButton component={Link} to={`/Teacher/class/assignment`}>
                     <ListItemIcon>
                         <AssignmentOutlinedIcon color={location.pathname.startsWith("/Teacher/class/student/assignment") ? 'primary' : 'inherit'} />
                     </ListItemIcon>

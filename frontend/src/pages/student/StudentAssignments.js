@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux';
 
 const StudentAssignments = () => {
     const [assignments, setAssignments] = useState([]);
-    const currentUser = useSelector((state) => state.user.currentUser);
+    // const currentUser = useSelector((state) => state.user.currentUser);
 
     useEffect(() => {
         const fetchAssignments = async () => {
-            if (!currentUser) return;
+            // if (!currentUser) return;
 
             try {
-                const response = await axios.get(`http://localhost:5000/api/assignments/${currentUser._id}`);
+                const response = await axios.get(`http://localhost:5000/api/assignments`);
                 console.log('Assignments data:', response.data); // Debugging statement
                 setAssignments(response.data);
             } catch (error) {
@@ -20,9 +20,8 @@ const StudentAssignments = () => {
             }
         };
 
-        console.log('Current user ID:', currentUser._id); // Debugging statement
         fetchAssignments();
-    }, [currentUser]);
+    }, []);
 
     return (
         <div>
@@ -31,10 +30,8 @@ const StudentAssignments = () => {
             </Typography>
             <List>
                 {assignments.map((assignment, index) => (
-                    <ListItem key={index} button>
+                    <ListItem key={index}>
                         <ListItemText primary={assignment.fileName} />
-                        <p>Subject ID: {assignment.subjectID}</p>
-                        <p>Uploaded By: {assignment.studentID}</p>
                         <a href={`http://localhost:5000/${assignment.filePath}`} download>Download</a>
                     </ListItem>
                 ))}
