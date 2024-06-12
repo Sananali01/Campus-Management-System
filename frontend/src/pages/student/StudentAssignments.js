@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import axios from 'axios';
+import { Container, Typography, Table, TableHead, TableBody, TableRow, TableCell,  IconButton } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 
 const StudentAssignments = () => {
     const [assignments, setAssignments] = useState([]);
@@ -9,7 +11,7 @@ const StudentAssignments = () => {
         const fetchAssignments = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/assignments');
-                console.log('Assignments data:', response.data); // Debugging statement
+                console.log('Assignments data:', response.data);
                 setAssignments(response.data);
             } catch (error) {
                 console.error('Error fetching assignments:', error);
@@ -19,31 +21,50 @@ const StudentAssignments = () => {
         fetchAssignments();
     }, []);
 
+    const handleDownload = async (assignmentId, fileName) => {
+        try {
+            const response = await axios.get(`http://localhost:5000/api/download-assignment/${assignmentId}`, {
+                responseType: 'blob',
+            });
+    
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', fileName || 'assignment');
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error downloading assignment:', error);
+        }
+    };
+    
     return (
-        <Box sx={{ textAlign: 'center', marginTop: '2rem' }}>
-            <Typography variant="h4" component="h2" gutterBottom>
+        <Container maxWidth="md" sx={{ marginTop: 4 }}>
+            <Typography variant="h4" align="center" gutterBottom>
                 Assignments
             </Typography>
 
-            <TableContainer component={Paper} sx={{ marginTop: '2rem' }}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell sx={{fontWeight:'bold'}}>Assignment</TableCell>
+            <Table  sx={{ marginTop: 5 }}>
+                <TableHead>
+                    <TableRow>
+                        <TableCell sx={{fontWeight:'bold',fontSize:'larger'}}>Assignment</TableCell>
+                        <TableCell sx={{fontWeight:'bold',fontSize:'larger'}}>Actions</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {assignments.map((assignment, index) => (
+                        <TableRow key={index}>
+                            <TableCell>{assignment.fileName}</TableCell>
+                            <TableCell>
+                                <IconButton onClick={() => handleDownload(assignment._id, assignment.fileName)}>
+                                    <FontAwesomeIcon icon={faDownload} color="blue"/>
+                                </IconButton>
+                            </TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {assignments.map((assignment, index) => (
-                            <TableRow key={index}>
-                                <TableCell>
-                                    {assignment.fileName}
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Box>
+                    ))}
+                </TableBody>
+            </Table>
+        </Container>
     );
 };
 
