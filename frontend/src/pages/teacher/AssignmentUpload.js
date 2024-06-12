@@ -3,7 +3,7 @@ import { useNavigate} from 'react-router-dom';
 import { Box, Button, Typography, Snackbar, Alert, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const AssignmentUpload = () => {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ const AssignmentUpload = () => {
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
     const [isUploaded, setIsUploaded] = useState(false); // State to track if assignment is uploaded
 
-    const currentUser = useSelector((state) => state.user.currentUser);
+    // const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleFileChange = (event) => {
         setAssignmentFiles([...assignmentFiles, { file: event.target.files[0], uploaded: false }]);
@@ -101,8 +101,8 @@ const AssignmentUpload = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>File</TableCell>
-                            <TableCell>Actions</TableCell>
+                            <TableCell sx={{fontWeight:'bold'}}>File</TableCell>
+                            <TableCell sx={{fontWeight:'bold'}}>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
