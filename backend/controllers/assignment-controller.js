@@ -61,7 +61,7 @@ const getAssignmentsByStudent = async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch assignments' });
     }
 };
-
+z
 
 
 module.exports = { upload, uploadAssignment, getAssignmentsByStudent };
