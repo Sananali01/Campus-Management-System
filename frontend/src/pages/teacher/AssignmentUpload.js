@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate} from 'react-router-dom';
 import { Box, Button, Typography, Snackbar, Alert, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { Delete, InsertDriveFile, CloudDownload, CheckCircle } from '@mui/icons-material'; // Import icons
 import axios from 'axios';
@@ -8,7 +9,9 @@ const AssignmentUpload = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
-    const [isUploaded, setIsUploaded] = useState(false);
+    const [isUploaded, setIsUploaded] = useState(false); // State to track if assignment is uploaded
+
+    // const currentUser = useSelector((state) => state.user.currentUser);
 
     const handleFileChange = (event) => {
         setAssignmentFiles([...assignmentFiles, { file: event.target.files[0], uploaded: false }]);
@@ -57,7 +60,6 @@ const AssignmentUpload = () => {
             console.log('Files uploaded successfully');
             setSnackbarMessage('Assignments uploaded successfully');
             setSnackbarSeverity('success');
-            setIsUploaded(true);
             setAssignmentFiles(newFiles.map(({ file }) => ({ file, uploaded: true })));
         } catch (error) {
             console.error('Error uploading files:', error);
@@ -106,8 +108,8 @@ const AssignmentUpload = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize: 'larger' }}>File</TableCell>
-                            <TableCell sx={{ fontWeight: 'bold', fontSize: 'larger' }}>Actions</TableCell>
+                            <TableCell sx={{fontWeight:'bold'}}>File</TableCell>
+                            <TableCell sx={{fontWeight:'bold'}}>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -135,7 +137,8 @@ const AssignmentUpload = () => {
 
             <Snackbar
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={snackbarOpen || isUploaded}
+                open={snackbarOpen || isUploaded} // Show popup if snackbarOpen is true or if assignment is uploaded
+                autoHideDuration={6000}
                 onClose={handleSnackbarClose}
             >
                 <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
