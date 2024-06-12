@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux'; 
-import { Container, Card, Typography, Grid } from '@mui/material'; // Import Material-UI components
+import { Avatar, Typography, Container, Grid, Card } from '@mui/material';
+import { useSelector } from 'react-redux';
+import PersonIcon from '@mui/icons-material/Person';
 
 const TeacherProfile = () => {
   const { currentUser } = useSelector((state) => state.user); 
@@ -10,6 +11,9 @@ const TeacherProfile = () => {
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={8} md={6}>
           <Card sx={{ p: 4, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }} >
+          <Avatar style={{ width: '100px', height: '100px', margin: 'auto', backgroundColor: '#3f51b5' }}>
+              <PersonIcon style={{ fontSize: '64px' }} />
+            </Avatar>
             <Typography variant="h4" component="h2" gutterBottom color="primary" align="center">Teacher Profile</Typography>
             <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name:</strong> {currentUser.name}</Typography>
             <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Email:</strong> {currentUser.email}</Typography>
