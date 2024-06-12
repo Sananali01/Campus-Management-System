@@ -20,6 +20,7 @@ import StudentComplain from './StudentComplain';
 import Logout from '../Logout'
 import AccountMenu from '../../components/AccountMenu';
 import { AppBar, Drawer } from '../../components/styles';
+import StudentAssignments from './StudentAssignments';
 
 const StudentDashboard = () => {
     const [open, setOpen] = useState(true);
@@ -31,7 +32,7 @@ const StudentDashboard = () => {
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar open={open} position='absolute' sx={{backgroundColor:'#2f3095'}}>
+                <AppBar open={open} position='absolute' sx={{ backgroundColor: '#2f3095' }}>
                     <Toolbar sx={{ pr: '24px' }}>
                         <IconButton
                             edge="start"
@@ -75,6 +76,8 @@ const StudentDashboard = () => {
                         <Route path='*' element={<Navigate to="/" />} />
                         <Route path="/Student/dashboard" element={<StudentHomePage />} />
                         <Route path="/Student/profile" element={<StudentProfile />} />
+                        <Route path="/Student/assignments" element={<StudentAssignments />} />
+
 
                         <Route path="/Student/subjects" element={<StudentSubjects />} />
                         <Route path="/Student/attendance" element={<ViewStdAttendance />} />

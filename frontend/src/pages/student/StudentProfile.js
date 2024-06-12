@@ -1,110 +1,29 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper } from '@mui/material';
+import { Avatar, Typography, Container, Grid, Card } from '@mui/material';
 import { useSelector } from 'react-redux';
+import PersonIcon from '@mui/icons-material/Person';
 
 const StudentProfile = () => {
-  const { currentUser, response, error } = useSelector((state) => state.user);
-
-  if (response) { console.log(response) }
-  else if (error) { console.log(error) }
-
-  const sclassName = currentUser.sclassName
-  const studentSchool = currentUser.school
-  
-  
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <>
-      <Container maxWidth="md">
-        <StyledPaper elevation={3}>
-          <Grid container spacing={3} alignItems="center" justifyContent="center">
-            <Grid item xs={12}>
-              <Box display="flex" justifyContent="center">
-                <StyledAvatar alt="Student Avatar" sx={{ width: 150, height: 150 }}>
-                  {String(currentUser.name).charAt(0)}
-                </StyledAvatar>
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h4" component="h2" textAlign="center">
-                {currentUser.name}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" component="p" textAlign="center">
-              <strong>Student Roll No:</strong> {currentUser.rollNum}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" component="p" textAlign="center">
-              <strong>Class:</strong> {sclassName.sclassName}
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" component="p" textAlign="center">
-              <strong>School:</strong> {studentSchool.schoolName}
-              </Typography>
-            </Grid>
-          </Grid>
-        </StyledPaper>
-        <StyledCard>
-          <CardContent>
-            <Typography variant="h5" gutterBottom textAlign="center" mb={4}>
-              Personal Information
-            </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Date of Birth:</strong> January 1, 2000
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Gender:</strong> Male
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Email:</strong> john.doe@example.com
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Phone:</strong> (123) 456-7890
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Address:</strong> 123 Main Street, City, Country
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Emergency Contact:</strong> (987) 654-3210
-                </Typography>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </StyledCard>
-      </Container>
-    </>
-  )
-}
+    <Container maxWidth="lg" style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <Card sx={{ p: 4, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }} >
+            <Avatar style={{ width: '100px', height: '100px', margin: 'auto', backgroundColor: '#3f51b5' }}>
+              <PersonIcon style={{ fontSize: '64px' }} />
+            </Avatar>
+            <Typography variant="h4" component="h2" gutterBottom color="primary" align="center"> Student Profile</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name: </strong> {currentUser.name}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Roll No: </strong> {currentUser.rollNum}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Class: </strong>{currentUser.sclassName.sclassName}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>School: </strong> {currentUser.school.schoolName}</Typography>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
 
 export default StudentProfile;
-
-const StyledPaper = styled(Paper)`
-  padding: 20px;
-  margin-bottom: 20px;
-`;
-
-const StyledCard = styled(Card)`
-  margin-top: 20px;
-`;
-
-const StyledAvatar = styled(Avatar)`
-  width: 150px;
-  height: 150px;
-  background-color: #ff5722; /* You can change the background color */
-`;

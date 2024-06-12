@@ -1,132 +1,29 @@
-// import React, { useState } from 'react';
-// import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material'
-// import { useDispatch, useSelector } from 'react-redux';
-// import { deleteUser, updateUser } from '../../redux/userRelated/userHandle';
-// import { useNavigate } from 'react-router-dom'
-// import { authLogout } from '../../redux/userRelated/userSlice';
-// import { Button, Collapse } from '@mui/material';
-
+import React from 'react';
+import { Avatar, Container, Card, Typography, Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
+import PersonIcon from '@mui/icons-material/Person';
 
 const AdminProfile = () => {
-    // const [showTab, setShowTab] = useState(false);
-    // const buttonText = showTab ? 'Cancel' : 'Edit profile';
+  const { currentUser } = useSelector((state) => state.user); 
 
-    // const navigate = useNavigate()
-    // const dispatch = useDispatch();
-        const { currentUser } = useSelector((state) => state.user);
-        console.log(currentUser);
-    // const { currentUser, response, error } = useSelector((state) => state.user);
-    // const address = "Admin"
-
-    // if (response) { console.log(response) }
-    // else if (error) { console.log(error) }
-
-    // const [name, setName] = useState(currentUser.name);
-    // const [email, setEmail] = useState(currentUser.email);
-    // const [password, setPassword] = useState("");
-    // const [schoolName, setSchoolName] = useState(currentUser.schoolName);
-
-    // const fields = password === "" ? { name, email, schoolName } : { name, email, password, schoolName }
-
-    // const submitHandler = (event) => {
-    //     event.preventDefault()
-    //     dispatch(updateUser(fields, currentUser._id, address))
-    // }
-
-    // const deleteHandler = () => {
-    //     try {
-    //         dispatch(deleteUser(currentUser._id, "Students"));
-    //         dispatch(deleteUser(currentUser._id, address));
-    //         dispatch(authLogout());
-    //         navigate('/');
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-    return (
-        <div>
-           <div style={styles.container}>
-           <div style={styles.profile}>
-                <div style={styles.info}><strong>Name:</strong> {currentUser.name}</div>
-                <div style={styles.info}><strong>Email:</strong> {currentUser.email}</div>
-                <div style={styles.info}><strong>Role:</strong> {currentUser.role}</div>
-                <div style={styles.info}><strong>School:</strong> {currentUser.schoolName}</div>
-            </div>
-        </div>
-            {/* <Button variant="contained" color="error" onClick={deleteHandler}>Delete</Button> */}
-            {/* <Button variant="contained" sx={styles.showButton}
-                onClick={() => setShowTab(!showTab)}>
-                {showTab ? <KeyboardArrowUp /> : <KeyboardArrowDown />}{buttonText}
-            </Button>
-            <Collapse in={showTab} timeout="auto" unmountOnExit>
-                <div className="register">
-                    <form className="registerForm" onSubmit={submitHandler}>
-                        <span className="registerTitle">Edit Details</span>
-                        <label>Name</label>
-                        <input className="registerInput" type="text" placeholder="Enter your name..."
-                            value={name}
-                            onChange={(event) => setName(event.target.value)}
-                            autoComplete="name" required />
-
-                        <label>School</label>
-                        <input className="registerInput" type="text" placeholder="Enter your school name..."
-                            value={schoolName}
-                            onChange={(event) => setSchoolName(event.target.value)}
-                            autoComplete="name" required />
-
-                        <label>Email</label>
-                        <input className="registerInput" type="email" placeholder="Enter your email..."
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
-                            autoComplete="email" required />
-
-                        <label>Password</label>
-                        <input className="registerInput" type="password" placeholder="Enter your password..."
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
-                            autoComplete="new-password" />
-
-                        <button className="registerButton" type="submit" >Update</button>
-                    </form>
-                </div>
-            </Collapse> */}
-        </div>
-    )
-}
-
-export default AdminProfile
-
-// const styles = {
-//     attendanceButton: {
-//         backgroundColor: "#270843",
-//         "&:hover": {
-//             backgroundColor: "#3f1068",
-//         }
-//     }
-// }
-
-const styles = {
-    container: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '80vh', // Adjust height as needed
-    },
-    profile: {
-        textAlign: 'left',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        maxWidth: '400px', // Adjust width as needed
-        fontSize: '20px', // Increase font size
-        boxShadow: '4px 8px 10px  2px black', // Add box shadow for 3D effect
-    },
-    info: {
-        marginBottom: '10px', // Add spacing between info items
-    },
-
-
-
+  return (
+    <Container maxWidth="lg" style={{ display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+      <Grid container justifyContent="center">
+        <Grid item xs={12} sm={8} md={6}>
+          <Card sx={{ p: 4, boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)' }} >
+            <Avatar style={{ width: '100px', height: '100px', margin: 'auto', backgroundColor: '#3f51b5', marginBottom:'10px' }}>
+              <PersonIcon style={{ fontSize: '64px' }} />
+            </Avatar>
+            <Typography variant="h4" component="h2" gutterBottom color="primary" align="center">Admin Profile</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name:</strong> {currentUser.name}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Email:</strong> {currentUser.email}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Role:</strong> {currentUser.role}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>School:</strong> {currentUser.schoolName}</Typography>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
+  );
 };
+
+export default AdminProfile;

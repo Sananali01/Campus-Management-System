@@ -33,13 +33,12 @@ const ShowSubjects = () => {
     const deleteHandler = (deleteID, address) => {
         console.log(deleteID);
         console.log(address);
-        setMessage("Sorry the delete function has been disabled for now.")
+        // setMessage("Sorry the delete function has been disabled for now.")
         setShowPopup(true)
 
-        // dispatch(deleteUser(deleteID, address))
-        //     .then(() => {
-        //         dispatch(getSubjectList(currentUser._id, "AllSubjects"));
-        //     })
+        // To enable deletion, uncomment the lines below and remove the lines above
+        dispatch(deleteUser(deleteID, address))
+                dispatch(getSubjectList(currentUser._id, "AllSubjects"));
     }
 
     const subjectColumns = [
@@ -107,7 +106,6 @@ const ShowSubjects = () => {
                 </>
             }
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
-
         </>
     );
 };
