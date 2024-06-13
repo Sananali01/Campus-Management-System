@@ -102,8 +102,8 @@ const ViewStudent = () => {
     }
 
     const deleteHandler = () => {
-        // setMessage("Sorry the delete function has been disabled for now.")
-        setShowPopup(true)
+        // // setMessage("Sorry the delete function has been disabled for now.")
+        // setShowPopup(true)
 
         dispatch(deleteUser(studentID, address))
             .then(() => {

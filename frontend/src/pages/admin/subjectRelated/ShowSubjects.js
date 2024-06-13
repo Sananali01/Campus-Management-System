@@ -31,10 +31,10 @@ const ShowSubjects = () => {
     const [message, setMessage] = useState("");
 
     const deleteHandler = (deleteID, address) => {
-        console.log(deleteID);
-        console.log(address);
-        // setMessage("Sorry the delete function has been disabled for now.")
-        setShowPopup(true)
+        // console.log(deleteID);
+        // console.log(address);
+        // // setMessage("Sorry the delete function has been disabled for now.")
+        // setShowPopup(true)
 
         // To enable deletion, uncomment the lines below and remove the lines above
         dispatch(deleteUser(deleteID, address))
