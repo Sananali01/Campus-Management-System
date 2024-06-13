@@ -80,12 +80,3 @@ So you have to do this in the frontend. After this the project will run smoothly
 <br>
 
 # Deployment
-* Render - server side
-* Netlify - client side
-
-"# CMS" 
-"# CMS" 
-"# CMS" 
-"# CMS" 
-"# CMS" 
-"# Campus-System" 
