@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { Container, Grid, Paper } from '@mui/material';
 import SeeNotice from '../../components/SeeNotice';
 import Students from "../../assets/img1.png";
@@ -7,14 +7,13 @@ import Teachers from "../../assets/img3.png";
 // import Fees from "../../assets/img4.png";
 import styled from 'styled-components';
 import CountUp from 'react-countup';
-import { BlackButton, BlueButton } from '../../components/buttonStyles';
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllSclasses } from '../../redux/sclassRelated/sclassHandle';
 import { getAllStudents } from '../../redux/studentRelated/studentHandle';
 import { getAllTeachers } from '../../redux/teacherRelated/teacherHandle';
-import { IconButton } from '@mui/material';
+
 
 const AdminHomePage = () => {
     const dispatch = useDispatch();
@@ -35,30 +34,8 @@ const AdminHomePage = () => {
     const numberOfClasses = sclassesList ? sclassesList.length : 0;
     const numberOfTeachers = teachersList ? teachersList.length : 0;
 
-    // Initialize announcements with JSON data
-    const initialAnnouncements = [
-        "Sunday is Off",
-    ];
 
-    const [announcements, setAnnouncements] = useState(initialAnnouncements);
-    const [newAnnouncement, setNewAnnouncement] = useState('');
-    const [showInput, setShowInput] = useState(false);
 
-    // Function to add new announcement
-    const addAnnouncement = () => {
-        if (newAnnouncement.trim() !== '') {
-            setAnnouncements([...announcements, newAnnouncement]);
-            setNewAnnouncement('');
-            setShowInput(false);
-        }
-    };
-
-    // Function to delete announcement
-    const deleteAnnouncement = (index) => {
-        const updatedAnnouncements = [...announcements];
-        updatedAnnouncements.splice(index, 1);
-        setAnnouncements(updatedAnnouncements);
-    };
 
     return (
         <StyledContainer maxWidth="lg">
@@ -91,33 +68,7 @@ const AdminHomePage = () => {
                         <Data start={0} end={23000} duration={2.5} prefix="$" />
                     </StyledPaper> */}
                 </Grid>
-                <Grid item xs={12}>
-                    <AnnouncementSection>
-                        <AnnouncementTitle >Announcements</AnnouncementTitle>
-                        <AnnouncementList>
-                            {announcements.map((announcement, index) => (
-                                <AnnouncementItem key={index} color="secondary">
-                                    {announcement}
-                                    <IconButton onClick={() => deleteAnnouncement(index)} color="secondary">
-                                        <DeleteIcon color="error" />
-                                    </IconButton>
-                                </AnnouncementItem>
-                            ))}
-                        </AnnouncementList>
-                        {showInput ? (
-                            <div>
-                                <AnnouncementInput
-                                    placeholder="Add new announcement"
-                                    value={newAnnouncement}
-                                    onChange={(e) => setNewAnnouncement(e.target.value)}
-                                />
-                                <BlackButton variant="contained" color="primary" onClick={addAnnouncement}>Add</BlackButton>
-                            </div>
-                        ) : (
-                            <BlueButton variant="contained" color="primary" onClick={() => setShowInput(true)}>Add Announcement</BlueButton>
-                        )}
-                    </AnnouncementSection>
-                </Grid>
+
                 <Grid item xs={12}>
                     <PaperStyled sx={{ p: 2, mb: 3 }}>
                         <SeeNotice />
@@ -175,46 +126,6 @@ transition: all 0.3s ease-in-out;
 `;
 
 
-
-
-// Styled components for Announcement section
-const AnnouncementSection = styled.div`
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px 2px #000;
-transition: all 0.3s ease-in-out;
-        &:hover {
-            transform: translateY(-5px);
-        }
-`;
-
-const AnnouncementList = styled.ul`
-    list-style-type: none;
-    padding: 0;
-`;
-
-const AnnouncementItem = styled.li`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-`;
-
-const AnnouncementTitle = styled.h1`
-    font-size: 2rem;
-    margin-top: 20px;
-    margin-bottom: 10px;
-`;
-
-
-const AnnouncementInput = styled.input`
-    width: calc(100% - 86px);
-    padding: 8px;
-    margin-right: 10px;
-    border: 2px solid black;
-    border-radius: 4px;
-`;
 
 
 
