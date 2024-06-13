@@ -18,6 +18,8 @@ import SpeedDialTemplate from "../../../components/SpeedDialTemplate";
 import Popup from "../../../components/Popup";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import ShowTeachers from '../teacherRelated/ShowTeachers'; // Update the path as per your project structure
+
 
 const ClassDetails = () => {
     const params = useParams()
@@ -116,8 +118,8 @@ const ClassDetails = () => {
                     </Box>
                     :
                     <>
-                        <Typography variant="h5" gutterBottom>
-                            Subjects List:
+                        <Typography variant="h4" align="center" gutterBottom>
+                            Subjects
                         </Typography>
 
                         <TableTemplate buttonHaver={SubjectsButtonHaver} columns={subjectColumns} rows={subjectRows} />
@@ -192,8 +194,8 @@ const ClassDetails = () => {
                     </>
                 ) : (
                     <>
-                        <Typography variant="h5" gutterBottom>
-                            Students List:
+                        <Typography variant="h4" align="center" gutterBottom>
+                            Students
                         </Typography>
 
                         <TableTemplate buttonHaver={StudentsButtonHaver} columns={studentColumns} rows={studentRows} />
@@ -207,7 +209,10 @@ const ClassDetails = () => {
     const ClassTeachersSection = () => {
         return (
             <>
-                Teachers
+                <Typography variant="h4" align="center" gutterBottom>
+                    Teachers
+                </Typography>
+                <ShowTeachers />
             </>
         )
     }
