@@ -41,7 +41,7 @@ import AddClass from './classRelated/AddClass';
 import ClassDetails from './classRelated/ClassDetails';
 import ShowClasses from './classRelated/ShowClasses';
 import AccountMenu from '../../components/AccountMenu';
-import AcademicCalendar from './noticeRelated/AcademicCalendar';
+
 
 const AdminDashboard = () => {
     const [open, setOpen] = useState(false);
@@ -102,7 +102,6 @@ const AdminDashboard = () => {
                         {/* Notice */}
                         <Route path="/Admin/addnotice" element={<AddNotice />} />
                         <Route path="/Admin/notices" element={<ShowNotices />} />
-                        <Route path="/Admin/academiccalander" element={<AcademicCalendar />} />
 
                         {/* Subject */}
                         <Route path="/Admin/subjects" element={<ShowSubjects />} />
