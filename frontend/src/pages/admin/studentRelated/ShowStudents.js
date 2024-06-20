@@ -62,7 +62,7 @@ const ShowStudents = () => {
     const studentRows = studentsList && studentsList.length > 0 && studentsList.map((student) => {
         return {
             name: student.name,
-            rollNum: student.rollNum,
+            rollNum:`Arid-${student.rollNum}`,
             sclassName: student.sclassName.sclassName,
             id: student._id,
         };
@@ -116,6 +116,7 @@ const ShowStudents = () => {
                     onClick={() => navigate("/Admin/students/student/" + row.id)}>
                     View
                 </BlueButton>
+                &nbsp;&nbsp;
                 <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
                         <Button onClick={handleClick}>{options[selectedIndex]}</Button>

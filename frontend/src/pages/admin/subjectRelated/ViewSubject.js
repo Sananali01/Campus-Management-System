@@ -49,7 +49,7 @@ const ViewSubject = () => {
 
   const studentRows = sclassStudents.map((student) => {
     return {
-      rollNum: student.rollNum,
+      rollNum:`Arid-${student.rollNum}`,
       name: student.name,
       id: student._id,
     };
@@ -64,6 +64,7 @@ const ViewSubject = () => {
         >
           View
         </BlueButton>
+        &nbsp;&nbsp;
         <PurpleButton
           variant="contained"
           onClick={() =>
@@ -146,35 +147,35 @@ const ViewSubject = () => {
 
     return (
       <>
-        <Typography variant="h4" align="center" gutterBottom>
-          Subject Details
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Name : {subjectDetails && subjectDetails.subName}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Code : {subjectDetails && subjectDetails.subCode}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Subject Sessions : {subjectDetails && subjectDetails.sessions}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Number of Students: {numberOfStudents}
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Class Name : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
-        </Typography>
-        {subjectDetails && subjectDetails.teacher ?
+      <Typography variant="h4" align="center" gutterBottom>
+          <b>Subject Details</b>
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+          <b>Subject Name:</b> {subjectDetails && subjectDetails.subName}
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+          <b>Subject Code:</b> {subjectDetails && subjectDetails.subCode}
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+          <b>Subject Sessions:</b> {subjectDetails && subjectDetails.sessions}
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+          <b>Number of Students:</b> {numberOfStudents}
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+          <b>Class Name:</b> {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
+      </Typography>
+      {subjectDetails && subjectDetails.teacher ? (
           <Typography variant="h6" gutterBottom>
-            Teacher Name : {subjectDetails.teacher.name}
+              <b>Teacher Name:</b> {subjectDetails.teacher.name}
           </Typography>
-          :
-          <GreenButton variant="contained"
-            onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
-            Add Subject Teacher
+      ) : (
+          <GreenButton variant="contained" onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
+              <b>Add Subject Teacher</b>
           </GreenButton>
-        }
-      </>
+      )}
+  </>
+  
     );
   }
 

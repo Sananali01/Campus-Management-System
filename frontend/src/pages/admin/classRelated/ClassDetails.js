@@ -18,6 +18,8 @@ import SpeedDialTemplate from "../../../components/SpeedDialTemplate";
 import Popup from "../../../components/Popup";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostAddIcon from '@mui/icons-material/PostAdd';
+// import ShowTeachers from '../teacherRelated/ShowTeachers'; // Update the path as per your project structure
+
 
 const ClassDetails = () => {
     const params = useParams()
@@ -87,6 +89,7 @@ const ClassDetails = () => {
                 >
                     View
                 </BlueButton >
+                
             </>
         );
     };
@@ -116,8 +119,8 @@ const ClassDetails = () => {
                     </Box>
                     :
                     <>
-                        <Typography variant="h5" gutterBottom>
-                            Subjects List:
+                        <Typography variant="h4" align="center" gutterBottom>
+                            Subjects
                         </Typography>
 
                         <TableTemplate buttonHaver={SubjectsButtonHaver} columns={subjectColumns} rows={subjectRows} />
@@ -136,7 +139,7 @@ const ClassDetails = () => {
     const studentRows = sclassStudents.map((student) => {
         return {
             name: student.name,
-            rollNum: student.rollNum,
+            rollNum: `Arid-${student.rollNum}`,
             id: student._id,
         };
     })
@@ -153,6 +156,7 @@ const ClassDetails = () => {
                 >
                     View
                 </BlueButton>
+                &nbsp;&nbsp;
                 <PurpleButton
                     variant="contained"
                     onClick={() =>
@@ -192,8 +196,8 @@ const ClassDetails = () => {
                     </>
                 ) : (
                     <>
-                        <Typography variant="h5" gutterBottom>
-                            Students List:
+                        <Typography variant="h4" align="center" gutterBottom>
+                            Students
                         </Typography>
 
                         <TableTemplate buttonHaver={StudentsButtonHaver} columns={studentColumns} rows={studentRows} />
@@ -207,7 +211,10 @@ const ClassDetails = () => {
     const ClassTeachersSection = () => {
         return (
             <>
-                Teachers
+                {/* <Typography variant="h4" align="center" gutterBottom>
+                    Teachers
+                </Typography>
+                <ShowTeachers /> */}
             </>
         )
     }
@@ -218,35 +225,37 @@ const ClassDetails = () => {
 
         return (
             <>
-                <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                    This is Class {sclassDetails && sclassDetails.sclassName}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Subjects: {numberOfSubjects}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Students: {numberOfStudents}
-                </Typography>
-                {getresponse &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/class/addstudents/" + classID)}
-                    >
-                        Add Students
-                    </GreenButton>
-                }
-                {response &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/addsubject/" + classID)}
-                    >
-                        Add Subjects
-                    </GreenButton>
-                }
-            </>
+            <Typography variant="h4" align="center" gutterBottom>
+                <b>Class Details</b>
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                This is Class {sclassDetails && <b>{sclassDetails.sclassName}</b>}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+                <b>Number of Subjects:</b> {numberOfSubjects}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+                <b>Number of Students:</b> {numberOfStudents}
+            </Typography>
+            {getresponse && (
+                <GreenButton
+                    variant="contained"
+                    onClick={() => navigate("/Admin/class/addstudents/" + classID)}
+                >
+                    Add Students
+                </GreenButton>
+            )}
+            &nbsp; &nbsp;
+            {response && (
+                <GreenButton
+                    variant="contained"
+                    onClick={() => navigate("/Admin/addsubject/" + classID)}
+                >
+                    Add Subjects
+                </GreenButton>
+            )}
+        </>
+        
         );
     }
 
@@ -263,7 +272,6 @@ const ClassDetails = () => {
                                     <Tab label="Details" value="1" />
                                     <Tab label="Subjects" value="2" />
                                     <Tab label="Students" value="3" />
-                                    <Tab label="Teachers" value="4" />
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>

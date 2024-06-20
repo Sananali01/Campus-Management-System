@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSubjectList } from '../../redux/sclassRelated/sclassHandle';
-import { BottomNavigation, BottomNavigationAction, Container, Paper, Table, TableBody, TableHead, Typography } from '@mui/material';
+import { BottomNavigation, BottomNavigationAction, Container, Paper, Table, Typography, TableBody, TableHead,TableCell, TableContainer, TableRow, Divider, } from '@mui/material';
 import { getUserDetails } from '../../redux/userRelated/userHandle';
 import CustomBarChart from '../../components/CustomBarChart'
 
@@ -85,19 +85,34 @@ const StudentSubjects = () => {
                     Class Details
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    You are currently in Class {sclassDetails && sclassDetails.sclassName}
+                    You are Currently in Class {sclassDetails && sclassDetails.sclassName}
                 </Typography>
+
                 <Typography variant="h6" gutterBottom>
-                    And these are the subjects:
-                </Typography>
-                {subjectsList &&
-                    subjectsList.map((subject, index) => (
-                        <div key={index}>
-                            <Typography variant="subtitle1">
-                                {subject.subName} ({subject.subCode})
-                            </Typography>
-                        </div>
+                And These are the Subjects:
+            </Typography>
+            <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell><b>Subject Name</b></TableCell>
+                        <TableCell><b>Subject Code</b></TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {subjectsList && subjectsList.map((subject, index) => (
+                        <TableRow key={index}>
+                            <TableCell>{subject.subName}</TableCell>
+                            <TableCell>
+                                {subject.subCode}
+                                {/* Insert a Divider between Subject Name and Subject Code */}
+                                <Divider orientation="vertical" flexItem />
+                            </TableCell>
+                        </TableRow>
                     ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
             </Container>
         );
     };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Divider, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from '@mui/material';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -13,8 +13,7 @@ import { useSelector } from 'react-redux';
 const TeacherSideBar = () => {
     const { currentUser } = useSelector((state) => state.user);
     const sclassName = currentUser.teachSclass;
-    const teachSubjectID = currentUser.teachSubject?._id;
-    const studentID = useParams().studentID;
+
 
     const location = useLocation();
 
@@ -31,11 +30,11 @@ const TeacherSideBar = () => {
                     </ListItemIcon>
                     <ListItemText primary="Home" style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Teacher/class">
+                <ListItemButton component={Link} to="/Teacher/class" sx={{}}>
                     <ListItemIcon>
                         <ClassOutlinedIcon color={location.pathname.startsWith("/Teacher/class") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary={`Class ${sclassName.sclassName}`} style={listItemTextStyle} />
+                    <ListItemText primary={`Class ${sclassName.sclassName}`} style={listItemTextStyle}/>
                 </ListItemButton>
                 <ListItemButton component={Link} to="/Teacher/complain">
                     <ListItemIcon>

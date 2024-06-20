@@ -177,7 +177,7 @@ const ViewStdAttendance = () => {
                         </>
                         :
                         <>
-                            <Typography variant="h6" gutterBottom component="div">
+                            <Typography variant="h6" gutterBottom component="div" sx={{fontSize:'2rem', textAlign:'center'}}>
                                 Currently You Have No Attendance Details
                             </Typography>
                         </>
