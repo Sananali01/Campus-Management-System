@@ -49,7 +49,7 @@ const ViewSubject = () => {
 
   const studentRows = sclassStudents.map((student) => {
     return {
-      rollNum: student.rollNum,
+      rollNum:`Arid-${student.rollNum}`,
       name: student.name,
       id: student._id,
     };
@@ -64,6 +64,7 @@ const ViewSubject = () => {
         >
           View
         </BlueButton>
+        &nbsp;&nbsp;
         <PurpleButton
           variant="contained"
           onClick={() =>
