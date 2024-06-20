@@ -89,6 +89,7 @@ const ClassDetails = () => {
                 >
                     View
                 </BlueButton >
+                
             </>
         );
     };
@@ -138,7 +139,7 @@ const ClassDetails = () => {
     const studentRows = sclassStudents.map((student) => {
         return {
             name: student.name,
-            rollNum: student.rollNum,
+            rollNum: `Arid-${student.rollNum}`,
             id: student._id,
         };
     })
@@ -155,6 +156,7 @@ const ClassDetails = () => {
                 >
                     View
                 </BlueButton>
+                &nbsp;&nbsp;
                 <PurpleButton
                     variant="contained"
                     onClick={() =>
@@ -243,6 +245,7 @@ const ClassDetails = () => {
                         Add Students
                     </GreenButton>
                 }
+                &nbsp; &nbsp;
                 {response &&
                     <GreenButton
                         variant="contained"
