@@ -32,22 +32,22 @@ const TeacherDetails = () => {
                 <div>Loading...</div>
             ) : (
                 <Container>
-                    <Typography variant="h4" align="center" gutterBottom>
+                    <Typography variant="h4" align="center" marginTop={3} gutterBottom>
                         Teacher Details
                     </Typography>
                     <Typography variant="h6" gutterBottom>
-                        Teacher Name: {teacherDetails?.name}
+                    <b>Teacher Name:</b> {teacherDetails?.name}
                     </Typography>
                     <Typography variant="h6" gutterBottom>
-                        Class Name: {teacherDetails?.teachSclass?.sclassName}
+                    <b>Class Name:</b> {teacherDetails?.teachSclass?.sclassName}
                     </Typography>
                     {isSubjectNamePresent ? (
                         <>
                             <Typography variant="h6" gutterBottom>
-                                Subject Name: {teacherDetails?.teachSubject?.subName}
+                            <b>Subject Name:</b>  {teacherDetails?.teachSubject?.subName}
                             </Typography>
                             <Typography variant="h6" gutterBottom>
-                                Subject Sessions: {teacherDetails?.teachSubject?.sessions}
+                            <b>Subject Sessions:</b>  {teacherDetails?.teachSubject?.sessions}
                             </Typography>
                         </>
                     ) : (

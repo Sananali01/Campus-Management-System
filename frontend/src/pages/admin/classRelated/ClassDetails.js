@@ -225,36 +225,37 @@ const ClassDetails = () => {
 
         return (
             <>
-                <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
-                </Typography>
-                <Typography variant="h5" gutterBottom>
-                    This is Class {sclassDetails && sclassDetails.sclassName}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Subjects: {numberOfSubjects}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                    Number of Students: {numberOfStudents}
-                </Typography>
-                {getresponse &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/class/addstudents/" + classID)}
-                    >
-                        Add Students
-                    </GreenButton>
-                }
-                &nbsp; &nbsp;
-                {response &&
-                    <GreenButton
-                        variant="contained"
-                        onClick={() => navigate("/Admin/addsubject/" + classID)}
-                    >
-                        Add Subjects
-                    </GreenButton>
-                }
-            </>
+            <Typography variant="h4" align="center" gutterBottom>
+                <b>Class Details</b>
+            </Typography>
+            <Typography variant="h5" gutterBottom>
+                This is Class {sclassDetails && <b>{sclassDetails.sclassName}</b>}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+                <b>Number of Subjects:</b> {numberOfSubjects}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+                <b>Number of Students:</b> {numberOfStudents}
+            </Typography>
+            {getresponse && (
+                <GreenButton
+                    variant="contained"
+                    onClick={() => navigate("/Admin/class/addstudents/" + classID)}
+                >
+                    Add Students
+                </GreenButton>
+            )}
+            &nbsp; &nbsp;
+            {response && (
+                <GreenButton
+                    variant="contained"
+                    onClick={() => navigate("/Admin/addsubject/" + classID)}
+                >
+                    Add Subjects
+                </GreenButton>
+            )}
+        </>
+        
         );
     }
 
