@@ -18,7 +18,7 @@ import SpeedDialTemplate from "../../../components/SpeedDialTemplate";
 import Popup from "../../../components/Popup";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import ShowTeachers from '../teacherRelated/ShowTeachers'; // Update the path as per your project structure
+// import ShowTeachers from '../teacherRelated/ShowTeachers'; // Update the path as per your project structure
 
 
 const ClassDetails = () => {
@@ -211,10 +211,10 @@ const ClassDetails = () => {
     const ClassTeachersSection = () => {
         return (
             <>
-                <Typography variant="h4" align="center" gutterBottom>
+                {/* <Typography variant="h4" align="center" gutterBottom>
                     Teachers
                 </Typography>
-                <ShowTeachers />
+                <ShowTeachers /> */}
             </>
         )
     }
@@ -271,7 +271,6 @@ const ClassDetails = () => {
                                     <Tab label="Details" value="1" />
                                     <Tab label="Subjects" value="2" />
                                     <Tab label="Students" value="3" />
-                                    <Tab label="Teachers" value="4" />
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
