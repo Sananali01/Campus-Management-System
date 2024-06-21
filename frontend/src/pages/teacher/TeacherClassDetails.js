@@ -33,7 +33,7 @@ const TeacherClassDetails = () => {
     const studentRows = sclassStudents.map((student) => {
         return {
             name: student.name,
-            rollNum: student.rollNum,
+            rollNum:`Arid-${student.rollNum}`,
             id: student._id,
         };
     })
@@ -87,6 +87,7 @@ const TeacherClassDetails = () => {
                 >
                     View
                 </BlueButton>
+                &nbsp;
                 <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
                         <Button onClick={handleClick}>{options[selectedIndex]}</Button>
