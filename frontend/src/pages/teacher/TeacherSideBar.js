@@ -7,13 +7,12 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined'; // New icon for assignments
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import { useSelector } from 'react-redux';
 
 const TeacherSideBar = () => {
     const { currentUser } = useSelector((state) => state.user);
     const sclassName = currentUser.teachSclass;
-
 
     const location = useLocation();
 
@@ -24,27 +23,27 @@ const TeacherSideBar = () => {
     return (
         <>
             <React.Fragment>
-                <ListItemButton component={Link} to="/">
+                <ListItemButton component={Link} to="/" sx={listItemButtonStyles(location.pathname === "/" || location.pathname === "/Teacher/dashboard")}>
                     <ListItemIcon>
-                        <HomeIcon color={location.pathname === ("/" || "/Teacher/dashboard") ? 'primary' : 'inherit'} />
+                        <HomeIcon color={location.pathname === "/" || location.pathname === "/Teacher/dashboard" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Home" style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Teacher/class" sx={{}}>
+                <ListItemButton component={Link} to="/Teacher/class" sx={listItemButtonStyles(location.pathname === "/Teacher/class")}>
                     <ListItemIcon>
-                        <ClassOutlinedIcon color={location.pathname.startsWith("/Teacher/class") ? 'primary' : 'inherit'} />
+                        <ClassOutlinedIcon color={location.pathname === "/Teacher/class" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary={`Class ${sclassName.sclassName}`} style={listItemTextStyle}/>
+                    <ListItemText primary={`${sclassName.sclassName}`} style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Teacher/complain">
+                <ListItemButton component={Link} to="/Teacher/complain" sx={listItemButtonStyles(location.pathname === "/Teacher/complain")}>
                     <ListItemIcon>
-                        <AnnouncementOutlinedIcon color={location.pathname.startsWith("/Teacher/complain") ? 'primary' : 'inherit'} />
+                        <AnnouncementOutlinedIcon color={location.pathname === "/Teacher/complain" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Complain" style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to={`/Teacher/class/assignment`}>
+                <ListItemButton component={Link} to="/Teacher/class/assignment" sx={listItemButtonStyles(location.pathname === "/Teacher/class/assignment")}>
                     <ListItemIcon>
-                        <AssignmentOutlinedIcon color={location.pathname.startsWith("/Teacher/class/student/assignment") ? 'primary' : 'inherit'} />
+                        <AssignmentOutlinedIcon color={location.pathname === "/Teacher/class/assignment" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Upload Assignment" style={listItemTextStyle} />
                 </ListItemButton>
@@ -62,15 +61,15 @@ const TeacherSideBar = () => {
                 }}>
                     User
                 </ListSubheader>
-                <ListItemButton component={Link} to="/Teacher/profile">
+                <ListItemButton component={Link} to="/Teacher/profile" sx={listItemButtonStyles(location.pathname === "/Teacher/profile")}>
                     <ListItemIcon>
-                        <AccountCircleOutlinedIcon color={location.pathname.startsWith("/Teacher/profile") ? 'primary' : 'inherit'} />
+                        <AccountCircleOutlinedIcon color={location.pathname === "/Teacher/profile" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Profile" style={listItemTextStyle} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/logout">
+                <ListItemButton component={Link} to="/logout" sx={listItemButtonStyles(location.pathname === "/logout")}>
                     <ListItemIcon>
-                        <ExitToAppIcon color={location.pathname.startsWith("/logout") ? 'primary' : 'inherit'} />
+                        <ExitToAppIcon color={location.pathname === "/logout" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Logout" style={listItemTextStyle} />
                 </ListItemButton>
@@ -78,5 +77,15 @@ const TeacherSideBar = () => {
         </>
     );
 }
+
+// Function to apply styles to ListItemButton based on active state
+const listItemButtonStyles = (isActive) => ({
+    ...(isActive && {
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        '&:hover': {
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        },
+    }),
+});
 
 export default TeacherSideBar;

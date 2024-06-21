@@ -16,7 +16,7 @@ const StudentProfile = () => {
             </Avatar>
             <Typography variant="h4" component="h2" gutterBottom color="primary" align="center"> Student Profile</Typography>
             <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Name: </strong> {currentUser.name}</Typography>
-            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Roll No: </strong> {currentUser.rollNum}</Typography>
+            <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Roll No: </strong>Arid-{currentUser.rollNum}</Typography>
             <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>Class: </strong>{currentUser.sclassName.sclassName}</Typography>
             <Typography variant="body1" gutterBottom style={{ fontSize: '1.4rem' }}><strong>School: </strong> {currentUser.school.schoolName}</Typography>
           </Card>
