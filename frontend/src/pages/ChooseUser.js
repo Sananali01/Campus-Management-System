@@ -10,6 +10,7 @@ const ChooseUser = ({ visitor }) => {
     const [loader, setLoader] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
+    const [selectedUser, setSelectedUser] = useState("");
 
     const loginUser = (fields, user) => {
         setTimeout(() => {
@@ -27,34 +28,37 @@ const ChooseUser = ({ visitor }) => {
         }, 1000);
     }
 
-    const navigateHandler = (user) => {
+    const handleUserSelection = (user) => {
+        setSelectedUser(user);
+    }
+
+    const handleLogin = () => {
         setLoader(true);
-        if (user === "Admin") {
+        if (selectedUser === "Admin") {
             if (visitor === "guest") {
                 const email = "yogendra@12"
                 const password = "zxc"
                 const fields = { email, password }
-                loginUser(fields, user);
-            }
-            else {
+                loginUser(fields, "Admin");
+            } else {
                 navigate('/Adminlogin');
             }
-        } else if (user === "Student") {
+        } else if (selectedUser === "Student") {
             if (visitor === "guest") {
                 const rollNum = "1"
                 const studentName = "Dipesh Awasthi"
                 const password = "zxc"
                 const fields = { rollNum, studentName, password }
-                loginUser(fields, user);
+                loginUser(fields, "Student");
             } else {
                 navigate('/Studentlogin');
             }
-        } else if (user === "Teacher") {
+        } else if (selectedUser === "Teacher") {
             if (visitor === "guest") {
                 const email = "tony@12"
                 const password = "zxc"
                 const fields = { email, password }
-                loginUser(fields, user);
+                loginUser(fields, "Teacher");
             } else {
                 navigate('/Teacherlogin');
             }
@@ -63,39 +67,62 @@ const ChooseUser = ({ visitor }) => {
 
     useEffect(() => {
         // Code to run after login state changes
-        // For demonstration, nothing here
     }, []);
 
     return (
-            <div className="container-fluid  choose-user-container">
-            <div className="row ">
-                <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="card admin" onClick={() => navigateHandler("Admin")}>
+        <div className="container-fluid choose-user-container">
+            <div className="row justify-content-center">
+           
+                    <div className="choose-card">
                         <div className="card-body">
-                            <FontAwesomeIcon icon={faUser} className="user-icon" fontSize='30px' />
-                            <h2>Admin</h2>
-                            <p>Login as an administrator to access the dashboard to manage app data.</p>
+                            <h2 className="card-title">Choose User Role</h2>
+                            <div className="role-options">
+                                <div
+                                    className={`role-option ${selectedUser === "Admin" ? 'selected' : ''}`}
+                                    onClick={() => handleUserSelection("Admin")}
+                                >
+                                    <FontAwesomeIcon icon={faUser} className="user-icon" />
+                                    <span>Admin</span>
+                                </div>
+                                <div
+                                    className={`role-option ${selectedUser === "Student" ? 'selected' : ''}`}
+                                    onClick={() => handleUserSelection("Student")}
+                                >
+                                    <FontAwesomeIcon icon={faUserGraduate} className="user-icon" />
+                                    <span>Student</span>
+                                </div>
+                                <div
+                                    className={`role-option ${selectedUser === "Teacher" ? 'selected' : ''}`}
+                                    onClick={() => handleUserSelection("Teacher")}
+                                >
+                                    <FontAwesomeIcon icon={faChalkboardTeacher} className="user-icon" />
+                                    <span>Teacher</span>
+                                </div>
+                            </div>
+                            {selectedUser && (
+                                <div className="user-info">
+                                    <FontAwesomeIcon
+                                        icon={selectedUser === "Admin" ? faUser :
+                                              selectedUser === "Student" ? faUserGraduate : faChalkboardTeacher}
+                                        className="selected-user-icon"
+                                    />
+                                    <h3>{selectedUser}</h3>
+                                    <p>
+                                        {selectedUser === "Admin" ? "Login as an administrator to access the dashboard to manage app data." :
+                                         selectedUser === "Student" ? "Login as a student to explore course materials and assignments." :
+                                         "Login as a teacher to create courses, assignments, and track student's progress."}
+                                    </p>
+                                </div>
+                            )}
+                            <button
+                                className={`login-btn ${selectedUser ? '' : 'disabled'}`}
+                                onClick={handleLogin}
+                                disabled={!selectedUser || loader}
+                            >
+                                {loader ? "Logging in..." : "Login"}
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="card student" onClick={() => navigateHandler("Student")}>
-                        <div className="card-body">
-                            <FontAwesomeIcon icon={faUserGraduate} className="user-icon" fontSize='30px' />
-                            <h2>Student</h2>
-                            <p>Login as a student to explore course materials and assignments.</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-sm-6 col-md-4 mt-5">
-                    <div className="card teacher" onClick={() => navigateHandler("Teacher")}>
-                        <div className="card-body">
-                            <FontAwesomeIcon icon={faChalkboardTeacher} className="user-icon" fontSize='30px'/>
-                            <h2>Teacher</h2>
-                            <p>Login as a teacher to create courses, assignments, and track student's progress.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             {loader && (
                 <div className="backdrop">
@@ -104,7 +131,6 @@ const ChooseUser = ({ visitor }) => {
             )}
             {showPopup && <Popup message={message} setShowPopup={setShowPopup} />}
         </div>
-        
     );
 };
 
